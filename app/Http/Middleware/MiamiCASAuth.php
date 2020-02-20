@@ -5,7 +5,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Request;
 use App\Users\User;
-use App\Users\QuickLinksUser;
+use App\Users\ISAScholarshipUser;
 use Illuminate\Contracts\Auth\Guard;
 use Log;
 
@@ -41,7 +41,7 @@ class MiamiCASAuth
                 return response()->view('errors.403');
             }*/
             if ((!empty(Request::segments()[0])) && (Request::segments()[0] === config('quicklinks.route_path'))) {
-                $user = new QuickLinksUser();
+                $user = new ISAScholarshipUser();
             } else {
                 $user = new User();
             }
