@@ -40,7 +40,7 @@ class MiamiCASAuth
                 Log::error("Invalid UniqueID Or User not in Banner: ".strtoupper($this->cas->user()));
                 return response()->view('errors.403');
             }*/
-            if ((!empty(Request::segments()[0])) && (Request::segments()[0] === config('quicklinks.route_path'))) {
+            if ((!empty(Request::segments()[0])) && (Request::segments()[0] === config('isaScholarship.route_path'))) {
                 $user = new ISAScholarshipUser();
             } else {
                 $user = new User();
