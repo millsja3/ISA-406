@@ -1,5 +1,10 @@
 <?php
 
+use MiamiOH\LaravelAuthMan\LaravelAuthManServiceProvider;
+use MiamiOH\LaravelMiamiTheme\LaravelMiamiThemeServiceProvider;
+use Subfission\Cas\CasServiceProvider;
+use Yajra\DataTables\DataTablesServiceProvider;
+
 return [
 
     /*
@@ -165,7 +170,10 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Subfission\Cas\CasServiceProvider::class,
+        MiamiOH\LaravelMiamiTheme\LaravelMiamiThemeServiceProvider::class,
+        MiamiOH\LaravelConfigManager\LaravelConfigManagerServiceProvider::class,
+        MiamiOH\LaravelAuthMan\LaravelAuthManServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -174,6 +182,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class
+
 
     ],
 
