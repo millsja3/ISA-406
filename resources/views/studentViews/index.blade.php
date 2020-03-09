@@ -1,28 +1,30 @@
 @extends('MiamiTheme::layouts.leftNavAndNoTopNav')
 @section('title', 'ISA Scholarship')
 @section('header', 'ISA Scholarship Form')
-
 @section('logOut')
     <div class="col-3 text-right logout-button">
         <a href="{{ url('/logout') }}" style="margin-bottom:10px" class="btn btn-primary">{{ trans('global.logout') }}</a>
     </div>
 @endsection
-@section('form')
+@section('content')
     <div>
         <form>
-            <label for="lname">Last Name:</label>
-            <input type="text" id="lname" name="lname" required>
-            <label for="fname">First Name:</label>
-            <input type="text" id="fname" name="fname" required>
-            <label for="uniqueID">uniqueID:</label>
-            <input type="text" id="uniqueID" name="uniqueID" required>
-            <br>
+            <div>
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname" required>
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname" required>
+                <label for="uniqueID">UniqueID:</label>
+                <input type="text" id="uniqueID" name="uniqueID" required>
+                <br>
+            </div><br>
+
             <label for="address">Current Miami University Address:</label>
             <input type="text" id="address" name="address" required>
-            <br>
+            <br><br>
             <label for="number">What is Your Phone Number?:</label>
             <input type="text" id="number" name="number" required>
-            <br>
+            <br><br>
             <label>Current Year:</label>
             <input type="radio" id="freshman" name="year" value="freshman" required>
             <label for="freshman">Freshman</label>
@@ -32,7 +34,7 @@
             <label for="junior">Junior</label>
             <input type="radio" id="senior" name="year" value="senior" required>
             <label for="senior">Senior</label>
-            <br>
+            <br><br>
             <label>Please enter your current major(s) and minor(s) if they apply</label> <br>
             <label>Information Systems</label>
             <input type="radio" id="major" name="infosystems" value="major">
@@ -48,25 +50,29 @@
             <input type="radio" id="major" name="accounting" value="major">
             <label for="major">Major</label>
             <input type="radio" id="minor" name="accounting" value="minor">
-            <label for="minor">Minor</label><br>
+            <label for="minor">Minor</label><br><br><br>
+
+
             <label>Please identify the type of career you are interested in consulting vs. non-consulting</label>
-            <br>            
+            <br>
             <input type="radio" id="consulting" name="careerType" value="consulting" required>
             <label for="consulting">Consulting</label>
             <input type="radio" id="nonconsulting" name="careerType" value="nonconsulting" required>
-            <label for="nonconsulting">Non-consulting</label><br>
+            <label for="nonconsulting">Non-consulting</label><br><br><br>
+
             <label for="grad">Anticipate Graduation Date:</label>
-            <input type="date" id="grad" name="grad"> <br>
+            <input type="date" id="grad" name="grad"> <br><br><br>
             <label>US Citizen?:</label>
             <input type="radio" id="yes" name="citizen" value="yes" required>
             <label for="yes">Yes</label>
             <input type="radio" id="no" name="citizen" value="no" required>
-            <label for="no">No</label><br>
+            <label for="no">No</label><br><br><br>
             <label for="gpa">GPA (on a 4.0 scale):</label>
-            <input type="text" id="gpa" name="gpa" required> <br>
+            <input type="text" id="gpa" name="gpa"  required> <br><br><br>
+
             <label>To download your ran DARS as an HTML file, navigate to the DAR window and expand all dropdowns. Then press control s to save the file, ensuring that it is a .html file type</label>
-            <br>
-            <label for="fileToUpload">Please upload an HTML export of your DARS:</label>
+            <br> <br>
+            <label for="fileToUpload" > Please upload an HTML export of your DARS:</label>
             <input type="file" name="fileToUpload" id="fileToUpload" required> <br>
             <label>Please write a statement of purpose that includes all of the following if applicable (less than 500 words)</label> 
             <ul>
@@ -75,12 +81,26 @@
                 <li>The industries in which you are most interested, especially public accounting roles if you are applying to the EY scholarship</li>
                 <li>A short description of how you would use any funds received</li>
             </ul>
-            <textarea name="statement">Enter statement here...</textarea>
+            <br> <br>
+            <textarea name="statement" id="personalStatment" cols="50" rows="4">Enter statement here...</textarea>
+            <span id="wordcount"></span>
+
+            <br>
             <input type="submit" value="Submit" class="btn btn-primary" style="margin-bottom:10px">
         </form>
     </div>
-<!-- @section('content')
-    <div class="col-lg-3 text-left create-button">
-        <a href="{{url('/webAlias/infoForm')}}" class="btn btn-primary" style="margin-bottom:10px">Submit</a>
-    </div> -->
+@endsection
+
+@section('javascript')
+    <script>
+        var myTextareaElement = document.getElementById("personalStatment");
+        myTextareaElement.onkeyup = function wordcount(wor) {
+
+            var myText = this.value.trim();
+            var wordsArray = myText.split(/\s+/g);
+            var words = wordsArray.length;
+
+            document.getElementById("wordcount").innerHTML = words;
+        };
+    </script>
 @endsection
