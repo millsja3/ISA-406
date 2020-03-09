@@ -7,7 +7,7 @@
     </div>
 @endsection
 @section('content')
-
+    <h1> Information Technology and Analytics Scholarships </h1>
     <p>The ISA department awards multiple departmental and corporate scholarships to ISA (IS or BA) majors and minors every
         year. To be considered, you must be a non-graduating Major or Minor in an ISA program, have at least a 2.9 GPA, and
         submit a completed application. These scholarships are available to first and second year students or rising seniors. Some
@@ -39,14 +39,16 @@
     </p>
 
     <h2>Fill in the following information to APPLY:</h2>
-    <div class="panel panel-default">
+    <div class="panel panel-content">
         <form class="form" method="get" action="{{url('confirm')}}">
             <div>
+                <br>
                 <label>Select a Scholarship: </label>
                 <select required name="scholarship" id="scholarship">
-                    <option>EY</option>
-                    <option>KPMG</option>
-                    <option>Worldplay</option>
+                    <option value="" disabled selected hidden>Choose A Scholarship: </option>
+                    <option value="EY" >EY</option>
+                    <option value="KPMG" >KPMG</option>
+                    <option value="Worldplay" >Worldplay</option>
                 </select>
                 <br> <br>
             </div>
@@ -76,25 +78,25 @@
             <input type="radio" id="senior" name="year" value="senior" required>
             <label for="senior">Senior</label>
             <br><br>
-            <label>Please enter your current major(s) and minor(s) if they apply</label> <br>
-            <label>Information Systems</label>
+            <label>Please enter your current major(s) and minor(s) if they apply:</label> <br>
+            <label>Information Systems: </label>
             <input type="radio" id="major" name="infosystems" value="major">
             <label for="major">Major</label>
             <input type="radio" id="minor" name="infosystems" value="minor">
             <label for="minor">Minor</label><br>
-            <label>Business Analytics</label>
+            <label>Business Analytics: </label>
             <input type="radio" id="major" name="busanalytics" value="major">
             <label for="major">Major</label>
             <input type="radio" id="minor" name="busanalytics" value="minor">
             <label for="minor">Minor</label><br>
-            <label>Accounting</label>
+            <label>Accounting: </label>
             <input type="radio" id="major" name="accounting" value="major">
             <label for="major">Major</label>
             <input type="radio" id="minor" name="accounting" value="minor">
             <label for="minor">Minor</label><br><br><br>
 
 
-            <label>Please identify the type of career you are interested in consulting vs. non-consulting</label>
+            <label>Please identify the type of career you are interested in consulting vs. non-consulting: </label>
             <br>
             <input type="radio" id="consulting" name="careerType" value="consulting" required>
             <label for="consulting">Consulting</label>
@@ -103,7 +105,7 @@
 
             <label for="grad">Anticipate Graduation Date:</label>
             <input type="date" id="grad" name="grad"> <br><br><br>
-            <label>US Citizen?:</label>
+            <label>US Citizen? :</label>
             <input type="radio" id="yes" name="citizen" value="yes" required>
             <label for="yes">Yes</label>
             <input type="radio" id="no" name="citizen" value="no" required>

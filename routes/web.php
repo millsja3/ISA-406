@@ -29,5 +29,6 @@ Route::group(['prefix' => config('isaScholarship.route_path'), 'namespace' => 'I
     //Student View
     Route::get('/', 'ISAScholarshipController@index');
     Route::get('/confirm', 'ISAScholarshipController@confirm');
+    Route::get('/addStudent', 'ISAScholarshipController@addStudent');
     //Admin View
 });

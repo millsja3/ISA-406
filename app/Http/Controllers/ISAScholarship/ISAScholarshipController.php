@@ -16,8 +16,8 @@ class ISAScholarshipController extends Controller
 
     public function confirm(Request $request)
     {
-        dd($request);
         $firstName = $request['fname'];
+        $scholarship = $request['scholarship'];
         $lastName = $request['lname'];
         $uniqueID = $request['uniqueID'];
         $address = $request['address'];
@@ -36,12 +36,21 @@ class ISAScholarshipController extends Controller
         $appName = 'global.appName';
         return view('studentViews.confirm', compact('messages', 'appName',
             'firstName', 'lastName', 'uniqueID', 'address', 'number', 'year', 'infosystems',
-            'busanalytics', 'accounting', 'careerType', 'grad', 'citizen', 'gpa', 'fileToUpload', 'statement'));
+            'busanalytics', 'accounting', 'careerType', 'grad', 'citizen', 'gpa', 'fileToUpload',
+            'statement', 'scholarship'));
     }
 
     public function parseDARHTML(Request $request)
     {
 
+    }
+
+    public function addStudent(Request $request)
+    {
+
+        $messages = [];
+        $appName = 'global.appName';
+        return view('studentViews.applications', compact('messages', 'appName'));
     }
 
 }
