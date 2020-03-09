@@ -14,4 +14,34 @@ class ISAScholarshipController extends Controller
         return view('studentViews.index', compact('messages', 'appName'));
     }
 
+    public function confirm(Request $request)
+    {
+        dd($request);
+        $firstName = $request['fname'];
+        $lastName = $request['lname'];
+        $uniqueID = $request['uniqueID'];
+        $address = $request['address'];
+        $number = $request['number'];
+        $year = $request['year'];
+        $infosystems = $request['infosystems'];
+        $busanalytics = $request['busanalytics'];
+        $accounting = $request['accounting'];
+        $careerType = $request['careerType'];
+        $grad = $request['grad'];
+        $citizen = $request['citizen'];
+        $gpa = $request['gpa'];
+        $fileToUpload = $request['fileToUpload'];
+        $statement = $request['statement'];
+        $messages = [];
+        $appName = 'global.appName';
+        return view('studentViews.confirm', compact('messages', 'appName',
+            'firstName', 'lastName', 'uniqueID', 'address', 'number', 'year', 'infosystems',
+            'busanalytics', 'accounting', 'careerType', 'grad', 'citizen', 'gpa', 'fileToUpload', 'statement'));
+    }
+
+    public function parseDARHTML(Request $request)
+    {
+
+    }
+
 }

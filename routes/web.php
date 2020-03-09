@@ -28,5 +28,6 @@ Route::get('/apperror', function () {
 Route::group(['prefix' => config('isaScholarship.route_path'), 'namespace' => 'ISAScholarship', 'middleware' => 'cas.miamioh'], function () {
     //Student View
     Route::get('/', 'ISAScholarshipController@index');
+    Route::get('/confirm', 'ISAScholarshipController@confirm');
     //Admin View
 });

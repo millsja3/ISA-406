@@ -1,4 +1,4 @@
-@extends('MiamiTheme::layouts.leftNavAndNoTopNav')
+@extends('MiamiTheme::layouts.noNav')
 @section('title', 'ISA Scholarship')
 @section('header', 'ISA Scholarship Form')
 @section('logOut')
@@ -7,8 +7,49 @@
     </div>
 @endsection
 @section('content')
-    <div>
-        <form>
+
+    <p>The ISA department awards multiple departmental and corporate scholarships to ISA (IS or BA) majors and minors every
+        year. To be considered, you must be a non-graduating Major or Minor in an ISA program, have at least a 2.9 GPA, and
+        submit a completed application. These scholarships are available to first and second year students or rising seniors. Some
+        of the corporate scholarships have additional requirements as detailed below. In your application (you must specify
+        which type of these you are interested in):
+    </p>
+    <br>
+    <ul>
+        <li>
+            Worldpay (formerly Vantiv) provides two $5000 scholarships to ISA majors in either Information Systems or Analytics. You
+            must be a returning sophomore, junior, or senior a minimum 3.2 GPA is preferred.
+        </li>
+        <li>
+            EY provides two $5000 scholarship pools.  One pool will fund one to five ISA specific scholarships with preference given to
+            students with a career interest in working for a public accounting firm, while the other is open to students from any
+            Analytics program with preference given to students associated with the Center for Analytics and Data Science. 
+            Applicants for both pools must be rising sophomores, juniors, or seniors, have a GPA of 3.2 or higher.
+        </li>
+        <li>
+            KPMG provides $3000 to fund one to three scholarships for rising sophomores, juniors, or seniors. Students with an ISA
+            and ACC combination are preferred, but this is not required. A 3.2 GPA is preferred along with interest in exploring a
+            career in technology focused work at a Big 4 firm.
+        </li>
+    </ul>
+    <br>
+    <p>
+        AWARD CRITERIA: Combinations of Academic Merit, Activities Beyond the Classroom, Areas of Interests, and Financial
+        Need. You may only be considered for one.
+    </p>
+
+    <h2>Fill in the following information to APPLY:</h2>
+    <div class="panel panel-default">
+        <form class="form" method="get" action="{{url('confirm')}}">
+            <div>
+                <label>Select a Scholarship: </label>
+                <select required name="scholarship" id="scholarship">
+                    <option>EY</option>
+                    <option>KPMG</option>
+                    <option>Worldplay</option>
+                </select>
+                <br> <br>
+            </div>
             <div>
                 <label for="lname">Last Name:</label>
                 <input type="text" id="lname" name="lname" required>
@@ -82,7 +123,7 @@
                 <li>A short description of how you would use any funds received</li>
             </ul>
             <br> <br>
-            <textarea name="statement" id="personalStatment" cols="50" rows="4">Enter statement here...</textarea>
+            <textarea name="statement" id="personalStatment" cols="50" rows="4" placeholder="Enter statement here..."></textarea>
             <span id="wordcount"></span>
 
             <br>
