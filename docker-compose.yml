@@ -7,7 +7,7 @@ services:
       - ./docker/database/init:/docker-entrypoint-initdb.d
       - ./docker/database/data:/var/lib/mysql
     ports:
-      - "${DB_HOST_PORT:-3306}:${DB_PORT:-3306}"
+      - "${DB_HOST_PORT:-1800}:${DB_PORT:-1800}"
     environment:
       - MYSQL_ROOT_PASSWORD=docker
 
