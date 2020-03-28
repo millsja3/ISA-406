@@ -1,6 +1,6 @@
 @extends('MiamiTheme::layouts.noNav')
 @section('title', 'ISA Scholarship')
-@section('header', 'ISA Scholarship Form')
+@section('header', 'Information Systems and Analytics Scholarship Form')
 @section('logOut')
     <div class="col-3 text-right logout-button">
         <a href="{{ url('/logout') }}" style="margin-bottom:10px" class="btn btn-primary">{{ trans('global.logout') }}</a>
@@ -13,25 +13,25 @@
     <div class="panel panel-content">
         <form class="form" method="get" action="{{url('addStudent')}}">
 
-            <p name ="scholarship" id ="scholarship"> Scholarhip Applied To:  {{{isset($scholarship) ? $scholarship: 'None'}}}</p>
-            <p name ="Firstname" id ="fname"> FirstName:  {{{isset($firstname) ? $firstname: 'None'}}}</p>
-            <p name ="lastname" id ="lname"> LastName:  {{{isset($lastName) ? $lastName: 'None'}}}</p>
-            <p name ="uniqueID" id ="uniqueID"> UniqueID:  {{{isset($uniqueID) ? $uniqueID: 'None'}}}</p>
-            <p name ="adress" id ="adress"> Address:  {{{isset($address) ? $address: 'None'}}}</p>
-            <p name ="number" id ="number"> PhoneNumber:  {{{isset($number) ? $number: 'None'}}}</p>
-            <p name ="year" id ="year"> Year:  {{{isset($year) ? $year: 'None'}}}</p>
-            <p name ="infosystems" id ="infosystems"> Information Systems:  {{{isset($infosystems) ? $infosystems: 'None'}}}</p>
-            <p name ="busanalytics" id ="busanalytics"> Business Analytics:  {{{isset($busanalytics) ? $busanalytics: 'None'}}}</p>
-            <p name ="accounting" id ="accounting"> Accounting:  {{{isset($accounting) ? $accounting: 'None'}}}</p>
-            <p name ="careertype" id ="careertype"> Career Type:  {{{isset($careerType) ? $careerType: 'None'}}}</p>
-            <p name ="graddate" id ="gradedate"> Expected Graduation Date:  {{{isset($grad) ? $grad: 'None'}}}</p>
-            <p name ="citizen" id ="citizen"> U.S. Citizenship:  {{{isset($citizen) ? $citizen: 'None'}}}</p>
-            <p name ="gpa" id ="gpa"> GPA:  {{{isset($gpa) ? $gpa: 'None'}}}</p>
-            <p name ="fileupload" id ="fileupload"> FILE UPLOADED:  {{{isset($fileToUpload) ? $fileToUpload: 'None'}}}</p>
-            <p name ="statement" id ="statement"> Personal Statement:  {{{isset($statement) ? $statement: 'None'}}}</p>
-
+            <p name ="scholarship" id ="scholarship"> <b> Scholarship Applied To: </b>  {{{isset($scholarship) ? $scholarship: 'None'}}}</p>
+            <p name ="Firstname" id ="fname"> <b> FirstName:  </b> {{{isset($firstname) ? $firstname: 'None'}}}</p>
+            <p name ="lastname" id ="lname"> <b> LastName: </b>  {{{isset($lastName) ? $lastName: 'None'}}}</p>
+            <p name ="uniqueID" id ="uniqueID"> <b> UniqueID:  </b> {{{isset($uniqueID) ? $uniqueID: 'None'}}}</p>
+            <p name ="adress" id ="adress">  <b> Address: </b>  {{{isset($address) ? $address: 'None'}}}</p>
+            <p name ="number" id ="number">  <b> PhoneNumber: </b>  {{{isset($number) ? $number: 'None'}}}</p>
+            <p name ="year" id ="year">  <b> Year: </b>  {{{isset($year) ? $year: 'None'}}}</p>
+            <p name ="infosystems" id ="infosystems">  <b> Information Systems: </b>  {{{isset($infosystems) ? $infosystems: 'None'}}}</p>
+            <p name ="busanalytics" id ="busanalytics">  <b> Business Analytics: </b>  {{{isset($busanalytics) ? $busanalytics: 'None'}}}</p>
+            <p name ="accounting" id ="accounting">  <b> Accounting:</b>   {{{isset($accounting) ? $accounting: 'None'}}}</p>
+            <p name ="careertype" id ="careertype">  <b> Career Type: </b>  {{{isset($careerType) ? $careerType: 'None'}}}</p>
+            <p name ="graddate" id ="gradedate">  <b> Expected Graduation Date: </b>  {{{isset($grad) ? $grad: 'None'}}}</p>
+            <p name ="citizen" id ="citizen">  <b> U.S. Citizenship: </b>  {{{isset($citizen) ? $citizen: 'None'}}}</p>
+            <p name ="gpa" id ="gpa">  <b> GPA:</b> {{{isset($gpa) ? $gpa: 'None'}}}</p>
+            <p name ="fileupload" id ="fileupload"> <b> FILE UPLOADED: </b>  {{{isset($fileToUpload) ? $fileToUpload: 'None'}}}</p>
+            <p name ="statement" id ="statement">  <b> Personal Statement:  </b> {{{isset($statement) ? $statement: 'None'}}}</p>
             <br>
-            <input type="submit" value="Submit" class="btn btn-primary" style="margin-bottom:10px">
+
+            <input type="submit" value="Confirm" class="btn btn-success" style="margin-bottom:10px">
         </form>
 
     </div>

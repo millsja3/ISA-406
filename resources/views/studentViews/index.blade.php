@@ -7,7 +7,7 @@
     </div>
 @endsection
 @section('content')
-    <h1> Information Technology and Analytics Scholarships </h1>
+    <h1> Information Systems and Analytics Scholarships </h1>
     <p>The ISA department awards multiple departmental and corporate scholarships to ISA (IS or BA) majors and minors every
         year. To be considered, you must be a non-graduating Major or Minor in an ISA program, have at least a 2.9 GPA, and
         submit a completed application. These scholarships are available to first and second year students or rising seniors. Some
@@ -117,7 +117,7 @@
             <br> <br>
             <label for="fileToUpload" > Please upload an HTML export of your DARS:</label>
             <input type="file" name="fileToUpload" id="fileToUpload" required> <br>
-            <label>Please write a statement of purpose that includes all of the following if applicable (less than 500 words)</label> 
+            <label>Please write a statement of purpose that includes all of the following if applicable (less than 500 words)</label>
             <ul>
                 <li>Your career goals</li>
                 <li>Activities beyond the classroom</li>
