@@ -40,7 +40,7 @@
 
     <h2>Fill in the following information to APPLY:</h2>
     <div class="panel panel-content">
-        <form class="form" method="get" action="{{url('confirm')}}">
+        <form class="form" method="post" action="{{url('confirm')}}" enctype="multipart/form-data">
             <div>
                 <br>
                 <label>Select a Scholarship: </label>
@@ -117,6 +117,16 @@
             <br> <br>
             <label for="fileToUpload" > Please upload an HTML export of your DARS:</label>
             <input type="file" name="fileToUpload" id="fileToUpload" required> <br>
+            <?php
+            // if (isset($fileToUpload)) {
+            //     echo "I reached here";
+            //     $target_dir = "uploads/";
+            //     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            //     if(isset($_POST["submit"])) {
+            //         echo $target_file;
+            //     }
+            // }
+            ?>
             <label>Please write a statement of purpose that includes all of the following if applicable (less than 500 words)</label>
             <ul>
                 <li>Your career goals</li>
@@ -131,6 +141,7 @@
             <br>
             <input type="submit" value="Submit" class="btn btn-primary" style="margin-bottom:10px">
         </form>
+        <p id="test"></p>
     </div>
 @endsection
 
@@ -145,5 +156,106 @@
 
             document.getElementById("wordcount").innerHTML = words;
         };
+        const document_input = document.getElementById('fileToUpload');
+        document_input.addEventListener("change", handleFiles, false);
+        function handleFiles() {
+            const reader = new FileReader();  
+            // var f = document.getElementById( 'fileToUpload' );
+            // var fileName= f.datafile.value;
+            const file = this.files[0];
+            console.log(file.name);
+            reader.onload = function(e) {
+                var output = e.target.result;
+                output = output.split("div class=\"reqTitle\"");
+                var output1 = output[27].split("table class=\"completedCourses\"");
+                document.getElementById('test').innerHTML += "Completed Courses: " + "\n\n";
+                for (i = 1; i < output1.length; i++) {
+                    var out= output1[i].split("tr class=\"takenCourse \"");
+                    for (idx=1; idx < out.length; idx++) {
+                        var courseIndex=out[idx].lastIndexOf("course");
+                        var courseName = out[idx].substring(courseIndex+8, courseIndex+14);
+                        var gradeIndex = out[idx].lastIndexOf("grade");
+                        var courseGrade = out[idx].substring(gradeIndex+7, gradeIndex+10);
+                        console.log(out[idx]);
+                        console.log(courseIndex + " " + courseName);
+                        console.log(gradeIndex + " " + courseGrade);
+                        var result = courseName + " " + courseGrade;
+                        document.getElementById('test').innerHTML += result + "\n";
+                        //console.log(out[idx]);
+                        // var course = out[idx].split("<td class=\"course\"	aria-label=\"course\">");
+                        // for (jdx=1; idx < course.length; jdx++) {
+                        //     //console.log(course[jdx]);
+                        //     //var course1 = course[jdx]
+                        //     var course1 = course[jdx].split("\n");
+                        //     for (dx=2; dx < course1.length; dx++) {
+                        //         document.getElementById('test').innerHTML += course1[dx].replace("<,>", "").trim() + " ";
+                        //     }
+                        //     document.getElementById('test').innerHTML += "\n";
+                        // }
+                        // for (jdx=0; jdx < course.length; jdx++) {
+                        // var posFL = course[jdx].indexOf("FL");
+                        // console.log(posFL);
+                        // if (posFL > -1) {
+                        //     var course = out[idx].substring(posFL);
+                        //     console.log(course);
+                            
+                        //     var grade= out[idx].substring(posFL+11);
+                        //     var result = course + " " + grade;
+                        //     document.getElementById('test').innerHTML += result + "\n";
+                        // }
+                        // }
+                    }
+                    // var posFL = output1[i].indexOf("FL ");
+                    // console.log(posFL);
+                //     for (idx=0; idx < out.length; idx++) {
+                //         var posFL = out[idx].indexOf("FL ");
+                //         console.log(posFL);
+                //         if (posFL > -1) {
+                //             var course = out[idx].substring(posFL);
+                //             console.log(course);
+                            
+                //             var grade= out[idx].substring(posFL+11);
+                //             var result = course + " " + grade;
+                //             document.getElementById('test').innerHTML += result + "\n";
+                //         }
+
+                //          var posSP = out[idx].indexOf("SP ");
+                //          console.log(posSP);
+                //     //     if (posSP > -1) {
+                //     //         var course = out[idx].substring(posSP, posSP+6);
+                //     //         var grade= out[idx].substring(posSP+11);
+                //     //         var result = course + " " + grade;
+                //     //         document.getElementById('test').innerHTML += result + "\n";
+                //     //     }
+                //          var posWN = out[idx].indexOf("WN ");
+                //          console.log(posWN);
+                //     //     if (posWN > -1) {
+                //     //         var course = out[idx].substring(posWN, posWN+6);
+                //     //         var grade= out[idx].substring(posWN+11);
+                //     //         var result = course + " " + grade;
+                //     //         document.getElementById('test').innerHTML += result + "\n";
+                //     //     }
+                    
+                //          var posSU = out[idx].indexOf("SU ");
+                //          console.log(posSU);
+                //     //     if (posSU > -1) {
+                //     //         var course = out[idx].substring(posSU, posSU+6);
+                //     //         var grade= out[idx].substring(posSU+11);
+                //     //         var result = course + " " + grade;
+                //     //         document.getElementById('test').innerHTML += result + "\n";
+                //     //     }
+                    //document.getElementById('test').innerHTML += out + "\n";
+           
+                //    }
+                    
+                }
+                
+                //document.getElementById('test').innerHTML = output1;
+                //console.log(output.substring(20));
+            }
+            reader.readAsText(file);
+            //string str = reader.read();
+        };
+
     </script>
 @endsection
