@@ -30,40 +30,6 @@
             <p name ="fileupload" id ="fileupload"> <b> FILE UPLOADED: </b>  {{{isset($fileToUpload) ? $fileToUpload: 'None'}}}</p>
             <p name ="statement" id ="statement">  <b> Personal Statement:  </b> {{{isset($statement) ? $statement: 'None'}}}</p>
             <br>
-
-            <?php
-                // if (isset($fileToUpload)) {
-                //     echo "I reached here";
-                //     $target_dir = "uploads/";
-                //     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-                //     if(isset($_POST["submit"])) {
-                //         echo $target_file;
-                //     }
-                // }
-                    //echo $_FILES[0]["name"];
-                    //$_FILES[$fileToUpload]["name"]
-                    // foreach($_FILES as $file) {
-                    //     echo $file["name"];
-                    // }
-                     //$name = isset($fileToUpload);
-                    //  $target_dir = "uploads/";
-                    //  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-                    //  $uploadOk = 1;
-                    //  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-                    //  $dom = new DOMDocument;
-                    //  $dom->loadHTMLFile($target_file);
-                
-                    // $courses = $dom->getElementsByClassName('completedCourses');
-                    // // $dar = file_get_html($name);
-                    // foreach($courses as $element) {
-                    //     echo $element->find('course') + ", " + $element->find('grade') + '\n';
-                    // }
-//                     $myfile = fopen($name, "r") or die("Unable to open file!");
-// echo fread($myfile,filesize("webdictionary.txt"));
-// fclose($myfile);
-                //}
-            ?>
-
             <input type="submit" value="Confirm" class="btn btn-success" style="margin-bottom:10px">
         </form>
 
