@@ -152,47 +152,57 @@
             const reader = new FileReader();  
             const file = this.files[0];
             console.log(file.name);
-            reader.onload = function(e) {
+            document.getElementById('test').innerHTML = "";
+            var fileType = file.type;
+            console.log(file.type);
+            if (fileType.indexOf("html") > -1) {
+                reader.onload = function(e) {
+                    // Get the completed courses
+                    var output = e.target.result;
+                    output = output.split("div class=\"reqTitle\"");
+                    var outputLen= output.length;
 
-                // Get the completed courses
-                var output = e.target.result;
-                output = output.split("div class=\"reqTitle\"");
-                var output1 = output[27].split("table class=\"completedCourses\"");
-                document.getElementById('test').innerHTML += "<p>Completed Courses: </p>";
-                document.getElementById('test').innerHTML += "<ul>";
-                for (i = 1; i < output1.length; i++) {
-                    var out= output1[i].split("tr class=\"takenCourse \"");
-                    // This extracts all of the completed courses and their respective grades
-                    for (idx=1; idx < out.length; idx++) {
-                        var courseIndex=out[idx].indexOf("course");
-                        // Hardcoded for now because of another course in the last one of each section that fails
-                        var courseName = out[idx].substring(courseIndex+28, courseIndex+34); 
-                        var gradeIndex = out[idx].lastIndexOf("grade");
-                        var courseGrade = out[idx].substring(gradeIndex+7, gradeIndex+10);
-                        console.log(out[idx]);
-                        console.log(courseIndex + " " + courseName);
-                        console.log(gradeIndex + " " + courseGrade);
-                        var result = courseName + " " + courseGrade;
-                        document.getElementById('test').innerHTML += "<li>" + result + "</li>";
+                    // -2 is to get the correct section we want, standard on DARS
+                    var output1 = output[outputLen-2].split("table class=\"completedCourses\"");
+                    document.getElementById('test').innerHTML += "<p>Completed Courses: </p>";
+                    document.getElementById('test').innerHTML += "<ul>";
+                    for (i = 1; i < output1.length; i++) {
+                        var out= output1[i].split("tr class=\"takenCourse \"");
+                        // This extracts all of the completed courses and their respective grades
+                        for (idx=1; idx < out.length; idx++) {
+                            var courseIndex=out[idx].indexOf("course");
+                            var courseName = out[idx].substring(courseIndex); // Get the start of the course row
+                            var indexEndTD = courseName.indexOf("\</td\>"); // Only the course row, don't go to next one
+                            courseName = courseName.substring(0, indexEndTD);
+                            var indexStartName = courseName.indexOf("\>");
+                            courseName = courseName.substring(indexStartName+1);
+                            var gradeIndex = out[idx].lastIndexOf("grade");
+                            var courseGrade = out[idx].substring(gradeIndex+7, gradeIndex+10);
+                            var result = courseName + " " + courseGrade;
+                            document.getElementById('test').innerHTML += "<li>" + result + "</li>";
+                        }
+                        document.getElementById('test').innerHTML +=  "</ul>";
                     }
-                    document.getElementById('test').innerHTML +=  "</ul>";
-                }
 
-                // Verify the entered GPA
-                var gpaoutput = e.target.result;
-                gpaoutput = gpaoutput.split("\<div class=\"includeBottomText preformatted\"\>");
-                var indexCumulativeGPA = gpaoutput[1].indexOf("OVERALL"); // Find the start of the overall GPA line
-                var stringStartOverall = gpaoutput[1].substring(indexCumulativeGPA); // start the string here now
-                stringStartOverall = stringStartOverall.split("\n"); // Split on new lines
-                stringStartOverall = stringStartOverall[0]; // Get only the first line 
-                var indexColon = stringStartOverall.indexOf(":"); // Find the colon (the start of the numbers)
-                stringStartOverall = stringStartOverall.substring(indexColon+1).trim(); // reassign the string to start there
-                var nums = stringStartOverall.split(" "); 
-                console.log(nums.length);
-                var GPA = nums[19]; // 20 divisions in the split
-                document.getElementById('test').innerHTML +=  "Overall GPA From DARS: " + GPA; 
+                    // Verify the entered GPA
+                    var gpaoutput = e.target.result;
+                    gpaoutput = gpaoutput.split("\<div class=\"includeBottomText preformatted\"\>");
+                    var indexCumulativeGPA = gpaoutput[1].indexOf("OVERALL"); // Find the start of the overall GPA line
+                    var stringStartOverall = gpaoutput[1].substring(indexCumulativeGPA); // start the string here now
+                    stringStartOverall = stringStartOverall.split("\n"); // Split on new lines
+                    stringStartOverall = stringStartOverall[0]; // Get only the first line 
+                    var indexColon = stringStartOverall.indexOf(":"); // Find the colon (the start of the numbers)
+                    stringStartOverall = stringStartOverall.substring(indexColon+1).trim(); // reassign the string to start there
+                    var nums = stringStartOverall.split(" "); 
+                    console.log(nums.length);
+                    var GPA = nums[19]; // 20 divisions in the split
+                    document.getElementById('test').innerHTML +=  "Overall GPA From DARS: " + GPA; 
+                }
+                reader.readAsText(file);
             }
-            reader.readAsText(file);
+            else {
+                alert("Please Enter a .html file!");
+            }
         };
 
     </script>
