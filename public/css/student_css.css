@@ -1,0 +1,23 @@
+.form {
+    margin-left: 20px;
+    margin-right: 15px;
+}
+.formLabel {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.formLabel1 {
+    margin-right: 10px;
+}
+.formLabel2 {
+    margin-right: 37px;
+}
+.formLabelBus {
+    margin-right: 21px;
+}
+.formLabelAccount {
+    margin-right: 65px;
+}
+b {
+    font-weight: 900;
+}
