@@ -11,11 +11,16 @@
 
     <h2> Confirm the following: </h2>
     <div class="panel panel-content">
-        <form class="form" method="get" action="{{url('addStudent')}}">
-
+        <form class="form" method="POST" action="{{url('addStudent')}}">
+            @csrf
             <p name ="scholarship" id ="scholarship"> <b> Scholarship Applied To: </b>  {{{isset($scholarship) ? $scholarship: 'None'}}}</p>
+            <input type="text" name="scholarship" id=scholarship"" value="{{{isset($scholarship) ? $scholarship: 'None'}}}" hidden>
             <p name ="Firstname" id ="fname"> <b> FirstName:  </b> {{{isset($firstname) ? $firstname: 'None'}}}</p>
+            <input type="text" name="fname" id=fname"" value="{{{isset($firstname) ? $firstname: 'None'}}}" hidden>
+
             <p name ="lastname" id ="lname"> <b> LastName: </b>  {{{isset($lastName) ? $lastName: 'None'}}}</p>
+            <input type="text" name="lname" id=lname"" value="{{{isset($lastName) ? $lastName: 'None'}}}" hidden>
+
             <p name ="uniqueID" id ="uniqueID"> <b> UniqueID:  </b> {{{isset($uniqueID) ? $uniqueID: 'None'}}}</p>
             <p name ="adress" id ="adress">  <b> Address: </b>  {{{isset($address) ? $address: 'None'}}}</p>
             <p name ="number" id ="number">  <b> PhoneNumber: </b>  {{{isset($number) ? $number: 'None'}}}</p>
@@ -29,10 +34,11 @@
             <p name ="gpa" id ="gpa">  <b> GPA:</b> {{{isset($gpa) ? $gpa: 'None'}}}</p>
             <p name ="fileupload" id ="fileupload"> <b> FILE UPLOADED: </b>  {{{isset($fileToUpload) ? $fileToUpload: 'None'}}}</p>
             <p name ="statement" id ="statement">  <b> Personal Statement:  </b> {{{isset($statement) ? $statement: 'None'}}}</p>
+            <p name ="CompleteCourses" id ="CompleteCourses">  <b> Completed Courses :  </b> {{{isset($completeCourses) ? $completeCourses: 'None'}}}</p>
+
             <br>
             <input type="submit" value="Confirm" class="btn btn-success" style="margin-bottom:10px">
         </form>
-
     </div>
 
 
