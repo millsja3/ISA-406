@@ -77,6 +77,7 @@ class ISAScholarshipController extends Controller
 
         $messages = [];
         $appName = 'global.appName';
+
         return view('studentViews.applications', compact('messages', 'appName'));
     }
 

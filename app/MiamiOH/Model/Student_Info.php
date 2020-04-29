@@ -3,6 +3,8 @@
 namespace App\MiamiOH\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student_Info extends Model
 {
@@ -11,4 +13,14 @@ class Student_Info extends Model
 
     public $incrementing = false;
     public $timestamps = false;
+
+    public function completedCourses(): HasMany
+    {
+        return $this->hasMany(CompletedCourses::class, 'uniqueid', 'uniqueid');
+    }
+
+    public function winner(): HasOne
+    {
+        return $this->hasOne(Winners::class, 'uniqueid', 'uniqueid');
+    }
 }
