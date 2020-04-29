@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="{{ url('/css/student_css.css') }}"/>
 @endsection
 @section('content')
-    <div>
+    <div id='reviewContent'>
         <h1>ISA Scholarship Application Reviews</h1>
         <p>Please select how you would like to view the submitted applications</p>
-        <form>
+        <form id='formid'>
             <select required name="viewType" id="viewType" onchange='viewChanged()'>
                 <option value="" disabled selected hidden>Choose a view method: </option>
                 <option value="scholarship" >View By Scholarship</option>
@@ -21,14 +21,14 @@
                 <option value="specificApplication" >View a Specific Application</option>
             </select> <br><br><br>
             <div id='scholarshipView' hidden>
-               <p><b>Select which Scholarship Applications you would like to view</b></p>
+            <p><b>Select which Scholarship Applications you would like to view</b></p>
                 <select required name="scholarship" id="scholarship" onchange='scholarshipSelected()'>
                     <option value="" disabled selected hidden>Choose A Scholarship: </option>
                     <option value="EY" >EY</option>
                     <option value="KPMG" >KPMG</option>
                     <option value="Worldplay" >Worldplay</option>
-               </select>
-               <p id='scholarshipApplication'></p>
+            </select>
+            <p id='scholarshipApplication'></p>
             </div>
             <div id='pastRecipientsView' hidden>
                 <p><b>Here are the students who have previously recieved ISA scholarships:</b></p>
@@ -45,6 +45,43 @@
 
 @section('javascript')
     <script>
+        var masterUser ="admin013";
+        var masterPass ="FSBscholarshipadmin";
+        var valid = false;
+        function validateForm() {
+            var enteredUser = document.getElementById('username').value;
+            var enteredPass= document.getElementById('password').value;
+            console.log(enteredUser);
+            console.log(enteredPass);
+            console.log(enteredUser == masterUser);
+            console.log(enteredPass==masterPass);
+            if (enteredUser != masterUser && masterPass !=enteredPass) {
+                alert("Incorrect username or password! You will not be able to view the applications");
+            }
+            else {
+                console.log("got to hide area");
+                document.getElementById('username').style.diplay='none';
+                document.getElementById('password').style.diplay='none';
+                document.getElementById('login_text').style.diplay='none';
+                document.getElementById('login_button').style.diplay='none';
+                valid = true;
+            }
+        };
+
+        // function formValidated() {
+        //     return valid;
+        //     location.load();
+        // };
+
+        // function refreshDivs() {
+        //     var isValid =$_SESSION['valid'];
+        //     if (isValid) {
+        //         document.getElementById('username').style.diplay='none';
+        //         document.getElementById('password').style.diplay='none';
+        //         document.getElementById('login_text').style.diplay='none';
+        //         document.getElementById('login_button').style.diplay='none';
+        //     }
+        // };
         function viewChanged() {
             var selectedView = document.getElementById('viewType').value;
             console.log(selectedView);

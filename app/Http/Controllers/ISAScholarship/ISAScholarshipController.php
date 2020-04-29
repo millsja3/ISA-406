@@ -20,6 +20,12 @@ class ISAScholarshipController extends Controller
         $appName = 'global.appName';
         return view('facultyViews.index', compact('messages', 'appName'));
     }
+    public function review()
+    {
+        $messages = [];
+        $appName = 'global.appName';
+        return view('facultyViews.review', compact('messages', 'appName'));
+    }
 
     public function confirm(Request $request)
     {

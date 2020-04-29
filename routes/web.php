@@ -32,4 +32,5 @@ Route::group(['prefix' => config('isaScholarship.route_path'), 'namespace' => 'I
     Route::get('/addStudent', 'ISAScholarshipController@addStudent');
     //Admin View
     Route::get('/facultyView', 'ISAScholarshipController@Facultyindex');
+    //Route::get('/authorizedAdmin', 'ISAScholarshipController@review');
 });
