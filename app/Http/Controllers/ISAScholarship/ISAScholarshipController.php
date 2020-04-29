@@ -9,7 +9,6 @@ use App\MiamiOH\Model\Student_Info;
 use App\MiamiOH\Model\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use function Sodium\increment;
 
 class ISAScholarshipController extends Controller
 {
