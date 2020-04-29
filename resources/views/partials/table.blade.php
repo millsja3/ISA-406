@@ -25,7 +25,7 @@
             @foreach ($studentCollection as $student)
                 @if($scholarship === $student->getscholarship()->name)
                     <tr>
-                        <td>{{$student->fullname}}</td>
+                        <td><a href="{{ url('/getStudentDetailed') }}"> {{$student->fullname}} </a> </td>
                         <td>{{$student->uniqueID}}</td>
                         <td>{{$student->majors}}</td>
                         <td>{{$student->minors}}</td>
@@ -43,7 +43,7 @@
             @foreach ($studentCollection as $student)
                 @if ($student->received_scholarship == 'Yes')
                     <tr>
-                        <td>{{$student->fullname}}</td>
+                        <td><a href="{{ url('/getStudentDetailed') }}"> {{$student->fullname}} </a></td>
                         <td>{{$student->uniqueID}}</td>
                         <td>{{$student->majors}}</td>
                         <td>{{$student->minors}}</td>

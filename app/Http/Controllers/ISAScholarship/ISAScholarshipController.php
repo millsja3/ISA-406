@@ -5,7 +5,6 @@ namespace App\Http\Controllers\ISAScholarship;
 use App\Http\Controllers\Controller;
 use App\MiamiOH\Model\CompletedCourses;
 use App\MiamiOH\Model\Scholarship;
-
 use App\MiamiOH\Model\Student_Info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -145,9 +144,12 @@ class ISAScholarshipController extends Controller
         }
     }
 
-    public function getStudentDetailed(){
-
-        return view('partials.detailed_student', compact('messages', 'appName'));
+    public function getStudentDetailed(Request $request)
+    {
+        $uniqueid = $request['uniqueid'];
+        $student =  Student_Info::where('uniqueid', $uniqueid);
+        $completedcourses = $student->completedCourses()->get();
+        return view('partials.detailed_student', compact('messages', 'appName', 'student', 'completedcourses'));
     }
 
 }
