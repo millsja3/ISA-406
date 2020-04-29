@@ -23,7 +23,9 @@ class ISAScholarshipController extends Controller
     {
         $messages = [];
         $appName = 'global.appName';
-        return view('facultyViews.index', compact('messages', 'appName'));
+        $students = new Student_Info();         
+        $studentCollection = $students->get();
+        return view('facultyViews.index', compact('messages', 'appName', 'studentCollection'));
     }
 
     public function confirm(Request $request)
@@ -59,8 +61,7 @@ class ISAScholarshipController extends Controller
             'statement', 'scholarship', 'courses'));
     }
 
-    public function completedCourses($courses): array
-    {
+    public function completedCourses($courses) {
         $courselist = explode(",", $courses);
         $courseAndGrade = [];
         foreach ($courselist as $course){
@@ -72,8 +73,7 @@ class ISAScholarshipController extends Controller
         return $courseAndGrade;
     }
 
-    public function getMajors($info, $bus, $acc): string
-    {
+    public function getMajors($info, $bus, $acc){
         $major = "";
         if(strpos($info, "major") !== false){
             $major .= "Information Systems";
@@ -88,7 +88,7 @@ class ISAScholarshipController extends Controller
         return $major;
 
     }
-    public function getMinors($info, $bus, $acc): string
+    public function getMinors($info, $bus, $acc)
     {
         $minor = "";
         if(strpos($info, "minor") !== false){

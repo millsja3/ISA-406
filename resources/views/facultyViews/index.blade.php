@@ -15,7 +15,7 @@
         @include('partials.messages')
         @include('partials.table')
         <p>Please select how you would like to view the submitted applications</p>
-        <form>
+        <form method="POST">
             <select required name="viewType" id="viewType" onchange='viewChanged()'>
                 <option value="" disabled selected hidden>Choose a view method: </option>
                 <option value="scholarship" >View By Scholarship</option>
