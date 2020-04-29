@@ -1,7 +1,8 @@
 @section('css')
     <link href="{{asset('css/jquery.dataTables.min.css')}}" rel="stylesheet">
 @endsection
-<table cellspacing="0" class="table table-miami display compact" id="AliasTable" role="grid"  style ="word-break: break-all" width="100%">
+<table cellspacing="0" class="table table-miami display compact" id="AliasTable" role="grid"
+       style="word-break: break-all" width="100%">
     <thead>
     <tr>
         <th>Student Name</th>
@@ -17,43 +18,43 @@
     </thead>
     <tbody>
     <php
-        $viewType = $_POST(['viewType']); 
-        $scholarship = $_POST(['scholarship']);
-    ?>
-    @if ($viewType == 'scholarship')
-        @foreach ($studentCollection as $student) 
-            @if($scholarship === $student->getscholarship()->name)
-                <tr>
-                    <td>{{$student->fullname}}</td>
-                    <td>{{$student->uniqueID}}</td>
-                    <td>{{$student->majors}}</td>
-                    <td>{{$student->minors}}</td>
-                    <td>{{$student->academicyear}}</td>
-                    <td>{{$student->gpa}}</td>
-                    <td>{{$student->career_type}}</td>
-                    <td>{{$student->getscholarship()->name}}</td>
-                    <td>{{$student->received_scholarship}}</td>
-                </tr>
-            @endif                                         
-        @endforeach
-    @endif
+        $viewType=$_POST(['viewType']);
+        $scholarship=$_POST(['scholarship']);
+        ?>
+        @if ($viewType == 'scholarship')
+            @foreach ($studentCollection as $student)
+                @if($scholarship === $student->getscholarship()->name)
+                    <tr>
+                        <td>{{$student->fullname}}</td>
+                        <td>{{$student->uniqueID}}</td>
+                        <td>{{$student->majors}}</td>
+                        <td>{{$student->minors}}</td>
+                        <td>{{$student->academicyear}}</td>
+                        <td>{{$student->gpa}}</td>
+                        <td>{{$student->career_type}}</td>
+                        <td>{{$student->getscholarship()->name}}</td>
+                        <td>{{$student->received_scholarship}}</td>
+                    </tr>
+                @endif
+            @endforeach
+        @endif
 
-    @if ($viewType == 'pastRecipients')
-        @foreach ($studentCollection as $student) 
-            @if ($student->received_scholarship == 'Yes')
-            <tr>
-                    <td>{{$student->fullname}}</td>
-                    <td>{{$student->uniqueID}}</td>
-                    <td>{{$student->majors}}</td>
-                    <td>{{$student->minors}}</td>
-                    <td>{{$student->academicyear}}</td>
-                    <td>{{$student->gpa}}</td>
-                    <td>{{$student->career_type}}</td>
-                    <td>{{$student->getscholarship()->name}}</td>
-                    <td>{{$student->received_scholarship}}</td>
-            </tr>
-            @endif                                   
-        @endforeach
+        @if ($viewType == 'pastRecipients')
+            @foreach ($studentCollection as $student)
+                @if ($student->received_scholarship == 'Yes')
+                    <tr>
+                        <td>{{$student->fullname}}</td>
+                        <td>{{$student->uniqueID}}</td>
+                        <td>{{$student->majors}}</td>
+                        <td>{{$student->minors}}</td>
+                        <td>{{$student->academicyear}}</td>
+                        <td>{{$student->gpa}}</td>
+                        <td>{{$student->career_type}}</td>
+                        <td>{{$student->getscholarship()->name}}</td>
+                        <td>{{$student->received_scholarship}}</td>
+                    </tr>
+    @endif
+    @endforeach
     @endif
     </tbody>
 </table>

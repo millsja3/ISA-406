@@ -5,8 +5,8 @@ namespace App\Http\Controllers\ISAScholarship;
 use App\Http\Controllers\Controller;
 use App\MiamiOH\Model\CompletedCourses;
 use App\MiamiOH\Model\Scholarship;
+
 use App\MiamiOH\Model\Student_Info;
-use App\MiamiOH\Model\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -19,11 +19,11 @@ class ISAScholarshipController extends Controller
         return view('studentViews.index', compact('messages', 'appName'));
     }
 
-    public function Facultyindex()
+    public function facultyIndex()
     {
         $messages = [];
         $appName = 'global.appName';
-        $students = new Student_Info();         
+        $students = new Student_Info();
         $studentCollection = $students->get();
         return view('facultyViews.index', compact('messages', 'appName', 'studentCollection'));
     }
@@ -145,7 +145,10 @@ class ISAScholarshipController extends Controller
         }
     }
 
+    public function getStudentDetailed(){
 
+        return view('partials.detailed_student', compact('messages', 'appName'));
+    }
 
 }
 
