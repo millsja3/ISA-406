@@ -85,27 +85,27 @@
             <br><br>
             <label>Please enter your current major(s) and minor(s) if they apply:</label> <br>
             <label class="formLabel1">Information Systems: </label>
-            <input type="radio" id="major" name="infosystems" value="major">
+            <input type="radio" id="major" name="infosystems" value="infosystems-major">
             <label class="formLabel" for="major">Major</label>
-            <input type="radio" id="minor" name="infosystems" value="minor">
+            <input type="radio" id="minor" name="infosystems" value="infosystems-minor">
             <label class="formLabel" for="minor">Minor</label><br>
             <label class="formLabelBus">Business Analytics: </label>
-            <input type="radio" id="major" name="busanalytics" value="major">
+            <input type="radio" id="major" name="busanalytics" value="busanalytics-major">
             <label class="formLabel" for="major">Major</label>
-            <input type="radio" id="minor" name="busanalytics" value="minor">
+            <input type="radio" id="minor" name="busanalytics" value="busanalytics-minor">
             <label class="formLabel" for="minor">Minor</label><br>
             <label class="formLabelAccount">Accounting: </label>
-            <input type="radio" id="major" name="accounting" value="major">
+            <input type="radio" id="major" name="accounting" value="accounting-major">
             <label class="formLabel" for="major">Major</label>
-            <input type="radio" id="minor" name="accounting" value="minor">
+            <input type="radio" id="minor" name="accounting" value="accounting-minor">
             <label class="formLabel" for="minor">Minor</label><br><br>
 
 
             <label>Please identify the type of career you are interested in consulting vs. non-consulting: </label>
             <br>
-            <input type="radio" id="consulting" name="careerType" value="consulting" required>
+            <input type="radio" id="consulting" name="careerType" value="Consulting" required>
             <label class="formLabel" for="consulting">Consulting</label>
-            <input type="radio" id="nonconsulting" name="careerType" value="nonconsulting" required>
+            <input type="radio" id="nonconsulting" name="careerType" value="Nonconsulting" required>
             <label class="formLabel" for="nonconsulting">Non-consulting</label><br><br>
 
             <label class="formLabel1" for="grad">Anticipated Graduation Date:</label>

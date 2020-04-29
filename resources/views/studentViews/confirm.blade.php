@@ -16,8 +16,8 @@
             <p name ="scholarship" id ="scholarship"> <b> Scholarship Applied To: </b>  {{{isset($scholarship) ? $scholarship: 'None'}}}</p>
             <input type="text" name="scholarship" id=scholarship"" value="{{{isset($scholarship) ? $scholarship: 'None'}}}" hidden>
 
-            <p name ="Firstname" id ="fname"> <b> FirstName:  </b> {{{isset($firstname) ? $firstname: 'None'}}}</p>
-            <input type="text" name="fname" id=fname"" value="{{{isset($firstname) ? $firstname: 'None'}}}" hidden>
+            <p name ="Firstname" id ="fname"> <b> FirstName:  </b> {{{isset($firstName) ? $firstName: 'None'}}}</p>
+            <input type="text" name="fname" id=fname"" value="{{{isset($firstName) ? $firstName: 'None'}}}" hidden>
 
             <p name ="lastname" id ="lname"> <b> LastName: </b>  {{{isset($lastName) ? $lastName: 'None'}}}</p>
             <input type="text" name="lname" id=lname"" value="{{{isset($lastName) ? $lastName: 'None'}}}" hidden>
@@ -34,14 +34,11 @@
             <p name ="year" id ="year">  <b> Year: </b>  {{{isset($year) ? $year: 'None'}}}</p>
             <input type="text" name="year" id=year"" value="{{{isset($year) ? $year: 'None'}}}" hidden>
 
-            <p name ="infosystems" id ="infosystems">  <b> Information Systems: </b>  {{{isset($infosystems) ? $infosystems: 'None'}}}</p>
-            <input type="text" name="infosystems" id=infosystems"" value="{{{isset($infosystems) ? $infosystems: 'None'}}}" hidden>
+            <p name ="major" id ="major">  <b> Majors: </b>  {{{isset($majors) ? $majors: 'None'}}}</p>
+            <input type="text" name="major" id=major"" value="{{{isset($majors) ? $majors: 'None'}}}" hidden>
 
-            <p name ="busanalytics" id ="busanalytics">  <b> Business Analytics: </b>  {{{isset($busanalytics) ? $busanalytics: 'None'}}}</p>
-            <input type="text" name="busanalytics" id=busanalytics"" value="{{{isset($busanalytics) ? $busanalytics: 'None'}}}" hidden>
-
-            <p name ="accounting" id ="accounting">  <b> Accounting:</b>   {{{isset($accounting) ? $accounting: 'None'}}}</p>
-            <input type="text" name="busanalytics" id=busanalytics"" value="{{{isset($busanalytics) ? $busanalytics: 'None'}}}" hidden>
+            <p name ="minors" id ="minors">  <b> Minors: </b>  {{{isset($minors) ? $minors: 'None'}}}</p>
+            <input type="text" name="minors" id=minors"" value="{{{isset($minors) ? $minors: 'None'}}}" hidden>
 
             <p name ="careertype" id ="careertype">  <b> Career Type: </b>  {{{isset($careerType) ? $careerType: 'None'}}}</p>
             <input type="text" name="careertype" id=careertype"" value="{{{isset($careerType) ? $careerType: 'None'}}}" hidden>
@@ -58,8 +55,8 @@
             <p name ="statement" id ="statement">  <b> Personal Statement:  </b> {{{isset($statement) ? $statement: 'None'}}}</p>
             <input type="text" name="statement" id=statement"" value="{{{isset($statement) ? $statement: 'None'}}}" hidden>
 
-            <p name ="CompleteCourses" id ="CompleteCourses">  <b> Completed Courses :  </b> {{{isset($completeCourses) ? $completeCourses: 'None'}}}</p>
-            <input type="text" name="CompleteCourses" id=CompleteCourses"" value="{{{isset($completeCourses) ? $completeCourses: 'None'}}}" hidden>
+            <p name ="CompleteCourses" id ="CompleteCourses">  <b> Completed Courses :  </b> {{{isset($courses) ? $courses: 'None'}}}</p>
+            <input type="text" name="CompleteCourses" id=CompleteCourses"" value="{{{isset($courses) ? $courses: 'None'}}}" hidden>
 
             <br>
             <input type="submit" value="Confirm" class="btn btn-success" style="margin-bottom:10px">

@@ -4,6 +4,11 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 class Handler extends ExceptionHandler
 {
@@ -29,7 +34,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param \Exception $exception
      * @return void
      *
      * @throws \Exception
@@ -42,14 +47,33 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception $exception
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Exception
      */
     public function render($request, Exception $exception)
     {
+        // Handle the CAS Authentication exception which occurs if unable to connect with CAS
+        if ($exception instanceof \CAS_AuthenticationException) {
+            Session::flash('casautherror', Lang::get('global.casautherror'));
+            return redirect('/apperror');
+        }
+
+        // Global 500 error
+        if (!config('app.debug')) {
+            foreach ($this->dontReport as $passException) {
+                if ($exception instanceof $passException) {
+                    return parent::render($request, $exception);
+                }
+            }
+            if (!($exception instanceof ValidationException) && !($exception instanceof AuthorizationException) && !($exception instanceof NotFoundHttpException)) {
+                Log::error($exception);
+                return response()->view('errors.500', [], 500);
+            }
+        }
+
         return parent::render($request, $exception);
     }
 }

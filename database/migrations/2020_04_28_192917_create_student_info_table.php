@@ -28,6 +28,7 @@ class CreateStudentInfoTable extends Migration
             $table->string('statement');
             $table->string('recieved_scholarship');
             $table->integer('scholarship_id');
+            $table->string('completedClasses');
             $table->timestamps();
         });
     }

@@ -19,6 +19,11 @@ class Student_Info extends Model
         return $this->hasMany(CompletedCourses::class, 'uniqueid', 'uniqueid');
     }
 
+    public function getscholarship(): HasOne
+    {
+        return $this->hasOne(Scholarship::class, 'scholarship_id', 'scholarship_id');
+
+    }
     public function winner(): HasOne
     {
         return $this->hasOne(Winners::class, 'uniqueid', 'uniqueid');

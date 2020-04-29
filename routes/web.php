@@ -24,6 +24,7 @@ Route::get('/logout', 'Auth\LogOutController@logout');
 Route::get('/apperror', function () {
     return view('errors.500');
 });
+Route::get('/getStudents', 'ISAScholarshipDatatablesController@getStudents');
 
 Route::group(['prefix' => config('isaScholarship.route_path'), 'namespace' => 'ISAScholarship'], function () {
     //Student View
