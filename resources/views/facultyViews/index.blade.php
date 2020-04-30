@@ -12,36 +12,6 @@
 @section('content')
     <div id='reviewContent'>
         <h1>ISA Scholarship Application Reviews</h1>
-<<<<<<< Updated upstream
-        <p>Please select how you would like to view the submitted applications</p>
-        <form id='formid'>
-            <select required name="viewType" id="viewType" onchange='viewChanged()'>
-                <option value="" disabled selected hidden>Choose a view method: </option>
-                <option value="scholarship" >View By Scholarship</option>
-                <option value="pastRecipients" >View Past Scholarship Recipients</option>
-                <option value="specificApplication" >View a Specific Application</option>
-            </select> <br><br><br>
-            <div id='scholarshipView' hidden>
-            <p><b>Select which Scholarship Applications you would like to view</b></p>
-                <select required name="scholarship" id="scholarship" onchange='scholarshipSelected()'>
-                    <option value="" disabled selected hidden>Choose A Scholarship: </option>
-                    <option value="EY" >EY</option>
-                    <option value="KPMG" >KPMG</option>
-                    <option value="Worldplay" >Worldplay</option>
-            </select>
-            <p id='scholarshipApplication'></p>
-            </div>
-            <div id='pastRecipientsView' hidden>
-                <p><b>Here are the students who have previously recieved ISA scholarships:</b></p>
-                <p id='pastWinners'></p>
-            </div>
-            <div id='specificApplicationView' hidden>
-                <p><b>Please enter the name of the student to view their detailed application: </b></p>
-                <input type='text' name='studentName' id='studentName' onchange='nameEntered()'>
-                <p id='matchingPeople'></p>
-            </div>
-        </form>
-=======
         @include('partials.messages')
         <div id='notApproved'>
             <p>Please log in to the admin account to view the scholarship applications.</p>
@@ -80,7 +50,6 @@
                 </div>
             </form>
         </div>
->>>>>>> Stashed changes
     </div>
 @endsection
 
@@ -101,38 +70,13 @@
             }
             else {
                 console.log("got to hide area");
-<<<<<<< Updated upstream
-                document.getElementById('username').style.diplay='none';
-                document.getElementById('password').style.diplay='none';
-                document.getElementById('login_text').style.diplay='none';
-                document.getElementById('login_button').style.diplay='none';
-=======
                 document.getElementById('notApproved').style.display ='none';
                 document.getElementById('approved').style.display ='block';
                 console.log(document.getElementById('approved').style.display);
                 console.log(document.getElementById('notApproved').style.display);
->>>>>>> Stashed changes
                 valid = true;
             }
         };
-
-<<<<<<< Updated upstream
-        // function formValidated() {
-        //     return valid;
-        //     location.load();
-        // };
-
-        // function refreshDivs() {
-        //     var isValid =$_SESSION['valid'];
-        //     if (isValid) {
-        //         document.getElementById('username').style.diplay='none';
-        //         document.getElementById('password').style.diplay='none';
-        //         document.getElementById('login_text').style.diplay='none';
-        //         document.getElementById('login_button').style.diplay='none';
-        //     }
-        // };
-=======
->>>>>>> Stashed changes
         function viewChanged() {
             var selectedView = document.getElementById('viewType').value;
             console.log(selectedView);
