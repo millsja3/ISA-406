@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\MiamiOH\Model\CompletedCourses;
 use App\MiamiOH\Model\Scholarship;
 use App\MiamiOH\Model\Student_Info;
+use App\MiamiOH\Model\Winners;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use DataTables;
 
 class ISAScholarshipController extends Controller
 {
@@ -18,7 +20,7 @@ class ISAScholarshipController extends Controller
         return view('studentViews.index', compact('messages', 'appName'));
     }
 
-    public function facultyIndex()
+    public function facultyIndex(Request $request)
     {
         $messages = [];
         $appName = 'global.appName';
@@ -125,7 +127,7 @@ class ISAScholarshipController extends Controller
         $student->scholarship_id = $scholarship->scholarship_id;
         $completedCourses = $this->completedCourses($request['CompleteCourses']);
         Log::info("Adding Courses");
-        //$this->addcompletedCourses($request['uniqueID'], $completedCourses);
+        $this->addcompletedCourses($request['uniqueID'], $completedCourses);
         $student->save();
         $messages["Success"] = "Your application has been sent in!!";
         return view('studentViews.index', compact('messages', 'appName'));
@@ -138,18 +140,64 @@ class ISAScholarshipController extends Controller
             $amount  = $course->get()->count();
             $course->courselistid = $amount + 1;
             $course->uniqueid = $uniqueID;
-            $course->course = $courses;
-            $course->courseGrade = $grade;
+            if(strlen($courses) > 2){
+                $course->course = $courses;
+                $course->courseGrade = $grade;
+            }
             $course->save();
         }
     }
 
-    public function getStudentDetailed(Request $request)
+    public function getStudentDetailed($uniqueid)
     {
-        $uniqueid = $request['uniqueid'];
-        $student =  Student_Info::where('uniqueid', $uniqueid);
-        $completedcourses = $student->completedCourses()->get();
+        $messages = [];
+        $appName = 'global.appName';
+        $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
+        $completedcourses = CompletedCourses::where("uniqueID", $uniqueid)->get();
         return view('partials.detailed_student', compact('messages', 'appName', 'student', 'completedcourses'));
+    }
+
+    public function awardStudentScholarship($uniqueid){
+        $messages = [];
+        $appName = 'global.appName';
+        $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
+        $student->recieved_scholarship = "Awarded";
+        $student->save();
+        $newWinner = new Winners();
+        $amount  = $newWinner->get()->count();
+        $newWinner->w_id = $amount + 1;
+        $newWinner->uniqueid = $uniqueid;
+        $newWinner->scholarship_id = $student->scholarship_id;
+        $newWinner->year_won = date("Y");
+        $newWinner->save();
+        $messages['Success'] = $uniqueid . " Has Been Awarded The Scholarship";
+        $students = new Student_Info();
+        $studentCollection = $students->get();
+        return view('facultyViews.index', compact('messages', 'appName', 'studentCollection' ));
+    }
+
+    public function denyStudentScholarship($uniqueid){
+        $messages = [];
+        $appName = 'global.appName';
+        $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
+        $student->recieved_scholarship = "Denied";
+        $student->save();
+        $messages['Success'] = $uniqueid . " Has Been Denied The Scholarship";
+        $students = new Student_Info();
+        $studentCollection = $students->get();
+        return view('facultyViews.index', compact('messages', 'appName', 'studentCollection'));
+    }
+
+    public function revertStudentScholarship($uniqueid){
+        $messages = [];
+        $appName = 'global.appName';
+        $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
+        $student->recieved_scholarship = "Applied";
+        $student->save();
+        $messages['Success'] = $uniqueid . " Has Been Reverted Back to Applied to The Scholarship";
+        $students = new Student_Info();
+        $studentCollection = $students->get();
+        return view('facultyViews.index', compact('messages', 'appName', 'studentCollection'));
     }
 
 }

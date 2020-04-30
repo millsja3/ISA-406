@@ -1,13 +1,14 @@
 version: '3'
 
 services:
-  mariadb:
-    image: mariadb:latest
+  db:
+    image: mysql:5.7
+    container_name: db
     volumes:
       - ./docker/database/init:/docker-entrypoint-initdb.d
       - ./docker/database/data:/var/lib/mysql
     ports:
-      - "${DB_HOST_PORT:-1800}:${DB_PORT:-1800}"
+      - "${DB_HOST_PORT:-3306}:${DB_PORT:-3306}"
     environment:
       - MYSQL_ROOT_PASSWORD=docker
 
@@ -17,7 +18,7 @@ services:
       - .:/usr/share/nginx/app
       - ./docker/php/conf/php.ini:/usr/local/etc/php/php.ini:ro
     depends_on:
-      - mariadb
+      - db
     working_dir: /usr/share/nginx/app
 
   nginx:

@@ -1,15 +1,24 @@
-@extends('MiamiTheme::layouts.leftNavAndNoTopNav')
+@extends('MiamiTheme::layouts.noNav')
+@section('css')
+    <link rel="stylesheet" href="{{ url('/css/detailed.css') }}"/>
+@endsection
 @section('content')
-    <h2> {{$student->full_name}} Detailed View: </h2>
     <div class="panel panel-content">
         <form class="form" method="POST" action="{{url('')}}">
+            <div class="container">
+                <div class="row">
+                    <p class="pHeader"> {{$student->full_name}} Detailed View: </p>
+                    <a class="btn btn-success" style="margin-bottom:10px" href="{{ url('/awardStudentScholarship/'. $student->uniqueid) }}" id='formButton'> Accept </a>
+                    <a class="btn btn-warning" style="margin-bottom:10px" href="{{ url('/revertStudentScholarship/'. $student->uniqueid) }}" id='formButton'> Revert </a>
+                    <a class="btn btn-danger" style="margin-bottom:10px" href="{{ url('/denyStudentScholarship/'. $student->uniqueid) }}" id='formButton'> Deny </a>
+                </div>
+            </div>
             @csrf
             <p name ="scholarship" id ="scholarship"> <b> Scholarship Applied To: </b>  {{{isset($student->getscholarship()->get()->first()->name) ? $student->getscholarship()->get()->first()->name: 'None'}}}</p>
             <input type="text" name="scholarship" id=scholarship"" value="{{{isset($student->getscholarship()->get()->first()->name) ? $student->getscholarship()->get()->first()->name: 'None'}}}" hidden>
 
-            <p name ="Firstname" id ="name"> <b> Students Name:  </b> {{{isset($student->full_name) ? $student->full_name: 'None'}}}</p>
+            <p name ="name" id ="name"> <b> Students Name:  </b> {{{isset($student->full_name) ? $student->full_name: 'None'}}}</p>
             <input type="text" name="name" id=name"" value="{{{isset($student->full_name) ? $student->full_name: 'None'}}}" hidden>
-
 
             <p name ="uniqueID" id ="uniqueID"> <b> UniqueID:  </b> {{{isset($student->uniqueid) ? $student->uniqueid: 'None'}}}</p>
             <input type="text" name="uniqueID" id=uniqueID"" value="{{{isset($student->uniqueid) ? $student->uniqueid: 'None'}}}" hidden>
@@ -26,8 +35,8 @@
             <p name ="major" id ="major">  <b> Majors: </b>  {{{isset($student->majors) ? $student->majors: 'None'}}}</p>
             <input type="text" name="major" id=major"" value="{{{isset($student->majors) ? $student->majors: 'None'}}}" hidden>
 
-            <p name ="minors" id ="minors">  <b> Minors: </b>  {{{isset($student->$minors) ? $student->$minors: 'None'}}}</p>
-            <input type="text" name="minors" id=minors"" value="{{{isset($student->$minors) ? $student->$minors: 'None'}}}" hidden>
+            <p name ="minors" id ="minors">  <b> Minors: </b>  {{{isset($student->minors) ? $student->minors: 'None'}}}</p>
+            <input type="text" name="minors" id=minors"" value="{{{isset($student->minors) ? $student->minors: 'None'}}}" hidden>
 
             <p name ="careertype" id ="careertype">  <b> Career Type: </b>  {{{isset($student->career_type) ? $student->career_type: 'None'}}}</p>
             <input type="text" name="careertype" id=careertype"" value="{{{isset($student->career_type) ? $student->career_type: 'None'}}}" hidden>
@@ -44,8 +53,8 @@
             <p name ="statement" id ="statement">  <b> Personal Statement:  </b> {{{isset($student->statement) ? $student->statement: 'None'}}}</p>
             <input type="text" name="statement" id=statement"" value="{{{isset($student->statement) ? $student->statement: 'None'}}}" hidden>
 
-            <p name ="reciveScholarship" id ="reciveScholarship">  <b> Recieve Scholarship:  </b> {{{isset($student->statement) ? $student->statement: 'None'}}}</p>
-            <input type="text" name="reciveScholarship" id=reciveScholarship"" value="{{{isset($student->statement) ? $student->statement: 'None'}}}" hidden>
+            <p name ="reciveScholarship" id ="reciveScholarship">  <b> Recieve Scholarship:  </b> {{{isset($student->recieved_scholarship) ? $student->recieved_scholarship: 'None'}}}</p>
+            <input type="text" name="reciveScholarship" id=reciveScholarship"" value="{{{isset($student->recieved_scholarship) ? $student->recieved_scholarship: 'None'}}}" hidden>
             <label><b>Completed Courses:</b></label>
             <table cellspacing="0" class="table table-miami display compact" id="AliasTable" role="grid"
                    style="word-break: break-all" width="100%">
@@ -56,25 +65,22 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(isset($completedcourses))
             @foreach($completedcourses as $course)
                 <tr>
                     <td>{{$course->course}}</td>
                     <td>{{$course->courseGrade}}</td>
                 </tr>
                 @endforeach
+                @else
+                    <tr>
+                        <td>No courses taken</td>
+                        <td>No grade reported</td>
+                    </tr>
+                @endif
                 </tbody>
             </table>
             <br>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <input type="submit" value="Accept" class="btn btn-success" style="margin-bottom:10px">
-                    </div>
-                    <div class="col">
-                        <input type="submit" value="Deny" class="btn btn-danger" style="margin-bottom:10px">
-                    </div>
-                </div>
-            </div>
         </form>
     </div>
 @endsection
