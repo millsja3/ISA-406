@@ -10,30 +10,12 @@
     <link rel="stylesheet" href="{{ url('/css/student_css.css') }}"/>
 @endsection
 @section('content')
-    <div id='reviewContent'>
-        <h1>ISA Scholarship Application Reviews</h1>
-        @include('partials.messages')
-        <div id='notApproved'>
-            <p>Please log in to the admin account to view the scholarship applications.</p>
-            Username: <input type='text' id='username'>
-            Password: <input type='password' id='password'>
-            <button type='button' onclick='validateForm()'>Login</button>
-        </div>
-        <div id='approved'>
-            <p>Search for a student by typing their name, the scholarship name, GPA, and application status. 
-            Note application status will say applied for recent applications, approved if the student recieved 
-            the scholarship, or denied.</p>
-            @include('partials.table')
-        </div>
-    </div>
-@endsection
-
-@section('javascript')
+<body>
     <script>
         var masterUser ="admin013";
         var masterPass ="FSBscholarshipadmin";
         var valid = false;
-        function validateForm() {
+        function validateUser() {
             var enteredUser = document.getElementById('username').value;
             var enteredPass= document.getElementById('password').value;
             console.log(enteredUser);
@@ -53,4 +35,21 @@
             }
         };
     </script>
+    <div id='reviewContent'>
+        <h1>ISA Scholarship Application Reviews</h1>
+        @include('partials.messages')
+        <div id='notApproved'>
+            <p>Please log in to the admin account to view the scholarship applications.</p>
+            Username: <input type='text' id='username'>
+            Password: <input type='password' id='password'>
+            <button type='button' onclick="validateUser()">Login</button>
+        </div>
+        <div id='approved' hidden>
+            <p>Search for a student by typing their name, the scholarship name, GPA, and application status. 
+            Note application status will say applied for recent applications, approved if the student recieved 
+            the scholarship, or denied.</p>
+            @include('partials.table')
+        </div>
+    </div>
+</body>
 @endsection
