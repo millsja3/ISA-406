@@ -17,10 +17,8 @@
     </tr>
     </thead>
     <tbody>
-    <php
-        $viewType=$_POST(['viewType']);
-        $scholarship=$_POST(['scholarship']);
-        ?>
+    @php($viewType = $_POST('viewtype'))
+    @php($scholarship= $_POST(['scholarship']))
         @if ($viewType == 'scholarship')
             @foreach ($studentCollection as $student)
                 @if($scholarship === $student->getscholarship()->name)
