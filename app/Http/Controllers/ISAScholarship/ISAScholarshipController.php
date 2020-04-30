@@ -126,7 +126,7 @@ class ISAScholarshipController extends Controller
         $student->scholarship_id = $scholarship->scholarship_id;
         $completedCourses = $this->completedCourses($request['CompleteCourses']);
         Log::info("Adding Courses");
-        //$this->addcompletedCourses($request['uniqueID'], $completedCourses);
+        $this->addcompletedCourses($request['uniqueID'], $completedCourses);
         $student->save();
         $messages["Success"] = "Your application has been sent in!!";
         return view('studentViews.index', compact('messages', 'appName'));
@@ -139,8 +139,10 @@ class ISAScholarshipController extends Controller
             $amount  = $course->get()->count();
             $course->courselistid = $amount + 1;
             $course->uniqueid = $uniqueID;
-            $course->course = $courses;
-            $course->courseGrade = $grade;
+            if(strlen($courses) > 2){                 
+                $course->course = $courses;                 
+                $course->courseGrade = $grade;            
+            }
             $course->save();
         }
     }
@@ -149,9 +151,7 @@ class ISAScholarshipController extends Controller
     {
         $messages = [];
         $appName = 'global.appName';
-        $uniqueid = $request['uniqueid'];
         $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
-        dd($uniqueid);
         $completedcourses = CompletedCourses::where("uniqueID", $uniqueid)->get();
         return view('partials.detailed_student', compact('messages', 'appName', 'student', 'completedcourses'));
     }
