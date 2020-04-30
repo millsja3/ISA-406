@@ -7,10 +7,9 @@
             <p name ="scholarship" id ="scholarship"> <b> Scholarship Applied To: </b>  {{{isset($student->getscholarship()->get()->first()->name) ? $student->getscholarship()->get()->first()->name: 'None'}}}</p>
             <input type="text" name="scholarship" id=scholarship"" value="{{{isset($student->getscholarship()->get()->first()->name) ? $student->getscholarship()->get()->first()->name: 'None'}}}" hidden>
 
-            <p name ="Firstname" id ="name"> <b> Students Name:  </b> {{{isset($student->full_name) ? $student->full_name: 'None'}}}</p>
+            <p name ="name" id ="name"> <b> Students Name:  </b> {{{isset($student->full_name) ? $student->full_name: 'None'}}}</p>
             <input type="text" name="name" id=name"" value="{{{isset($student->full_name) ? $student->full_name: 'None'}}}" hidden>
-
-
+            
             <p name ="uniqueID" id ="uniqueID"> <b> UniqueID:  </b> {{{isset($student->uniqueid) ? $student->uniqueid: 'None'}}}</p>
             <input type="text" name="uniqueID" id=uniqueID"" value="{{{isset($student->uniqueid) ? $student->uniqueid: 'None'}}}" hidden>
 
@@ -56,19 +55,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                @if(isset($completedCourses))
+                @if(isset($completedcourses))
             @foreach($completedcourses as $course)
                 <tr>
                     <td>{{$course->course}}</td>
                     <td>{{$course->courseGrade}}</td>
                 </tr>
                 @endforeach
-                    @else
+                @else
                     <tr>
-                        <td>No Courses Reported</td>
-                        <td>No Grade Reported</td>
+                        <td>No courses taken</td>
+                        <td>No grade reported</td>
                     </tr>
                 @endif
+                @endelse
                 </tbody>
             </table>
             <br>

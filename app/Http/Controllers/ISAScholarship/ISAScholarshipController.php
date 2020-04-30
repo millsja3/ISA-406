@@ -147,6 +147,9 @@ class ISAScholarshipController extends Controller
 
     public function getStudentDetailed($uniqueid)
     {
+        $messages = [];
+        $appName = 'global.appName';
+        $uniqueid = $request['uniqueid'];
         $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
         dd($uniqueid);
         $completedcourses = CompletedCourses::where("uniqueID", $uniqueid)->get();

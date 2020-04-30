@@ -14,17 +14,17 @@ class Student_Info extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    public function completedCourses(): HasMany
+    public function completedCourses()
     {
-        return $this->hasMany(CompletedCourses::class, 'uniqueid', 'uniqueid');
+        return $this->hasMany(CompletedCourses::class, 'uniqueID', 'uniqueid');
     }
 
-    public function getscholarship(): HasOne
+    public function getscholarship()
     {
         return $this->hasOne(Scholarship::class, 'scholarship_id', 'scholarship_id');
 
     }
-    public function winner(): HasOne
+    public function winner()
     {
         return $this->hasOne(Winners::class, 'uniqueid', 'uniqueid');
     }
