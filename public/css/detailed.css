@@ -1,0 +1,15 @@
+#formButton {
+    margin-left:50px;
+    margin-right:50px;
+    display: inline-block;
+}
+.pHeader {
+    font-size:30px;
+    font-weight: bold;
+    margin-right:100px;
+    margin-left: -80px;
+    display: inline-block;
+}
+p {
+    font-size:15px;
+}
