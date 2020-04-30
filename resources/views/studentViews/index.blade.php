@@ -53,7 +53,7 @@
                     <option value="" disabled selected hidden>Choose A Scholarship: </option>
                     <option value="EY" >EY</option>
                     <option value="KPMG" >KPMG</option>
-                    <option value="Worldplay" >Worldplay</option>
+                    <option value="Worldpay" >Worldpay</option>
                 </select>
                 <br> <br>
             </div>
