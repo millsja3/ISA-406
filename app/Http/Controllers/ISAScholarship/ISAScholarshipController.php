@@ -182,6 +182,15 @@ class ISAScholarshipController extends Controller
         return view('facultyViews.index', compact('messages', 'appName', 'student', 'completedcourses'));
     }
 
+    public function revertStudentScholarship($uniqueid){
+        $messages = [];
+        $appName = 'global.appName';
+        $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
+        $student->recieved_scholarship = "Applied";
+        $messages['Success'] = $uniqueid . " Has Been Reverted Back to Applied to The Scholarship";
+        return view('facultyViews.index', compact('messages', 'appName', 'student', 'completedcourses'));
+    }
+
 }
 
 

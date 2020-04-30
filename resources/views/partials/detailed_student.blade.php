@@ -7,8 +7,12 @@
         <form class="form" method="POST" action="{{url('')}}">
         <div class="container">
                 <div class="row">
-                    <p class="pHeader"> {{$student->full_name}} Detailed View: </h2>
-                    <input type="submit" value="Accept" class="btn btn-success" id='formButton'>
+                    <p class="pHeader"> {{$student->full_name}} Detailed View: </p> </h2>
+                        <a class="btn btn-success" style="margin-bottom:10px" href="{{ url('/awardStudentScholarship/'. $student->uniqueid) }}" id='formButton'> Accept </a>
+                        <a class="btn btn-warning" style="margin-bottom:10px" href="{{ url('/revertStudentScholarship/'. $student->uniqueid) }}" id='formButton'> Revert </a>
+                        <a class="btn btn-danger" style="margin-bottom:10px" href="{{ url('/denyStudentScholarship/'. $student->uniqueid) }}" id='formButton'> Deny </a>
+
+                        <input type="submit" value="Accept" class="btn btn-success" id='formButton'>
                     <input type="submit" value="Deny" class="btn btn-danger" id='formButton'>
                 </div>
             </div>
