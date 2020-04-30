@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\MiamiOH\Model\CompletedCourses;
 use App\MiamiOH\Model\Scholarship;
 use App\MiamiOH\Model\Student_Info;
+use App\MiamiOH\Model\Winners;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use DataTables;
@@ -139,9 +140,9 @@ class ISAScholarshipController extends Controller
             $amount  = $course->get()->count();
             $course->courselistid = $amount + 1;
             $course->uniqueid = $uniqueID;
-            if(strlen($courses) > 2){                 
-                $course->course = $courses;                 
-                $course->courseGrade = $grade;            
+            if(strlen($courses) > 2){
+                $course->course = $courses;
+                $course->courseGrade = $grade;
             }
             $course->save();
         }
@@ -156,7 +157,30 @@ class ISAScholarshipController extends Controller
         return view('partials.detailed_student', compact('messages', 'appName', 'student', 'completedcourses'));
     }
 
+    public function awardStudentScholarship($uniqueid){
+        $messages = [];
+        $appName = 'global.appName';
+        $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
+        $student->recieved_scholarship = "Awarded";
+        $student->save();
+        $newWinner = new Winners();
+        $amount  = $newWinner->get()->count();
+        $newWinner->w_id = $amount + 1;
+        $newWinner->uniqueid = $uniqueid;
+        $newWinner->scholarship_id = $student->scholarship_id;
+        $newWinner->year_won = date("Y");
+        $messages['Success'] = $uniqueid . " Has Been Awarded The Scholarship";
+        return view('facultyViews.index', compact('messages', 'appName', 'student', 'completedcourses'));
+    }
 
+    public function denyStudentScholarship($uniqueid){
+        $messages = [];
+        $appName = 'global.appName';
+        $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
+        $student->recieved_scholarship = "Denied";
+        $messages['Success'] = $uniqueid . " Has Been Denied The Scholarship";
+        return view('facultyViews.index', compact('messages', 'appName', 'student', 'completedcourses'));
+    }
 
 }
 
