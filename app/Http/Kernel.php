@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'cas.guest' => \Subfission\Cas\Middleware\RedirectCASAuthenticated::class,
         'cas.miamioh' => \App\Http\Middleware\MiamiCASAuth::class,
         'cas.admin' => \App\Http\Middleware\MiamiCASAuthAdmin::class
+
     ];
 
     /**

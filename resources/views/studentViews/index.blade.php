@@ -11,6 +11,7 @@
 @endsection
 @section('content')
     <h1> Information Systems and Analytics Scholarships </h1>
+    @include('partials.messages')
     <p>The ISA department awards multiple departmental and corporate scholarships to ISA (IS or BA) majors and minors every
         year. To be considered, you must be a <b>non-graduating Major or Minor in an ISA program</b>, have at least a <b>2.9 GPA</b>, and
         submit a completed application. These scholarships are available to first and second year students or rising seniors. Some
@@ -43,7 +44,8 @@
 
     <h2>Fill in the following information to APPLY:</h2>
     <div class="panel panel-content">
-        <form class="form" method="post" action="{{url('confirm')}}" enctype="multipart/form-data">
+        <form class="form" method="POST" action="{{url('confirm')}}" enctype="multipart/form-data">
+            @csrf
             <div>
                 <br>
                 <label>Select a Scholarship: </label>
@@ -83,27 +85,27 @@
             <br><br>
             <label>Please enter your current major(s) and minor(s) if they apply:</label> <br>
             <label class="formLabel1">Information Systems: </label>
-            <input type="radio" id="major" name="infosystems" value="major">
+            <input type="radio" id="major" name="infosystems" value="infosystems-major">
             <label class="formLabel" for="major">Major</label>
-            <input type="radio" id="minor" name="infosystems" value="minor">
+            <input type="radio" id="minor" name="infosystems" value="infosystems-minor">
             <label class="formLabel" for="minor">Minor</label><br>
             <label class="formLabelBus">Business Analytics: </label>
-            <input type="radio" id="major" name="busanalytics" value="major">
+            <input type="radio" id="major" name="busanalytics" value="busanalytics-major">
             <label class="formLabel" for="major">Major</label>
-            <input type="radio" id="minor" name="busanalytics" value="minor">
+            <input type="radio" id="minor" name="busanalytics" value="busanalytics-minor">
             <label class="formLabel" for="minor">Minor</label><br>
             <label class="formLabelAccount">Accounting: </label>
-            <input type="radio" id="major" name="accounting" value="major">
+            <input type="radio" id="major" name="accounting" value="accounting-major">
             <label class="formLabel" for="major">Major</label>
-            <input type="radio" id="minor" name="accounting" value="minor">
+            <input type="radio" id="minor" name="accounting" value="accounting-minor">
             <label class="formLabel" for="minor">Minor</label><br><br>
 
 
             <label>Please identify the type of career you are interested in consulting vs. non-consulting: </label>
             <br>
-            <input type="radio" id="consulting" name="careerType" value="consulting" required>
+            <input type="radio" id="consulting" name="careerType" value="Consulting" required>
             <label class="formLabel" for="consulting">Consulting</label>
-            <input type="radio" id="nonconsulting" name="careerType" value="nonconsulting" required>
+            <input type="radio" id="nonconsulting" name="careerType" value="Nonconsulting" required>
             <label class="formLabel" for="nonconsulting">Non-consulting</label><br><br>
 
             <label class="formLabel1" for="grad">Anticipated Graduation Date:</label>
@@ -120,7 +122,11 @@
             <br> <br>
             <label for="fileToUpload" > Please upload an HTML export of your DARS:</label>
             <input type="file" name="fileToUpload" id="fileToUpload" required> <br>
-            <label>Please write a statement of purpose that includes all of the following if applicable (less than 500 words)</label> 
+
+            <input type="text" name="CompleteCourse" id="CompletedCourse" hidden value="">
+            <input type="text" name="DARgpa" id="DARgpa" hidden value="">
+
+            <label>Please write a statement of purpose that includes all of the following if applicable (less than 500 words)</label>
             <ul>
                 <li>Your career goals</li>
                 <li>Activities beyond the classroom</li>
@@ -151,10 +157,11 @@
         const document_input = document.getElementById('fileToUpload');
         document_input.addEventListener("change", handleFiles, false);
         function handleFiles() {
-            const reader = new FileReader();  
+            const reader = new FileReader();
             const file = this.files[0];
             console.log(file.name);
-            document.getElementById('test').innerHTML = "";
+            document.getElementById('CompletedCourse').value = "";
+            document.getElementById('DARgpa').value = "";
             var fileType = file.type;
             console.log(file.type);
             if (fileType.indexOf("html") > -1) {
@@ -166,8 +173,6 @@
 
                     // -2 is to get the correct section we want, standard on DARS
                     var output1 = output[outputLen-2].split("table class=\"completedCourses\"");
-                    document.getElementById('test').innerHTML += "<p>Completed Courses: </p>";
-                    document.getElementById('test').innerHTML += "<ul>";
                     for (i = 1; i < output1.length; i++) {
                         var out= output1[i].split("tr class=\"takenCourse \"");
                         // This extracts all of the completed courses and their respective grades
@@ -181,9 +186,8 @@
                             var gradeIndex = out[idx].lastIndexOf("grade");
                             var courseGrade = out[idx].substring(gradeIndex+7, gradeIndex+10);
                             var result = courseName + " " + courseGrade;
-                            document.getElementById('test').innerHTML += "<li>" + result + "</li>";
+                            document.getElementById('CompletedCourse').value += result + ",";
                         }
-                        document.getElementById('test').innerHTML +=  "</ul>";
                     }
 
                     // Verify the entered GPA
@@ -192,13 +196,13 @@
                     var indexCumulativeGPA = gpaoutput[1].indexOf("OVERALL"); // Find the start of the overall GPA line
                     var stringStartOverall = gpaoutput[1].substring(indexCumulativeGPA); // start the string here now
                     stringStartOverall = stringStartOverall.split("\n"); // Split on new lines
-                    stringStartOverall = stringStartOverall[0]; // Get only the first line 
+                    stringStartOverall = stringStartOverall[0]; // Get only the first line
                     var indexColon = stringStartOverall.indexOf(":"); // Find the colon (the start of the numbers)
                     stringStartOverall = stringStartOverall.substring(indexColon+1).trim(); // reassign the string to start there
-                    var nums = stringStartOverall.split(" "); 
+                    var nums = stringStartOverall.split(" ");
                     console.log(nums.length);
                     var GPA = nums[19]; // 20 divisions in the split
-                    document.getElementById('test').innerHTML +=  "Overall GPA From DARS: " + GPA; 
+                    document.getElementById('DARgpa').value += GPA;
                 }
                 reader.readAsText(file);
             }

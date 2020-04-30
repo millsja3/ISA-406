@@ -1,4 +1,4 @@
-@extends('MiamiTheme::layouts.noNav')
+@extends('MiamiTheme::layouts.leftNavAndNoTopNav')
 @section('title', 'ISA Scholarship')
 @section('header', 'ISA Scholarship Form')
 @section('logOut')
@@ -113,6 +113,6 @@
             var userInput = document.getElementById('studentName').value;
             document.getElementById('matchingPeople').innerHTML = userInput;
         }
-        
+
     </script>
 @endsection

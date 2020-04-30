@@ -20,12 +20,8 @@ class GenerateMenus
     public function handle($request, Closure $next)
     {
         \Menu::make('AppNavMenu', function ($menu) {
-            if (Gate::allows('quickLinksAccess')) {
-                $menu->add('QuickLinks', ['url' => 'quick-links/admin']);
-            }
-
-            if (Gate::allows('webAliasAccess')) {
-                $menu->add('Web Alias', ['route' => 'webAlias']);
+            if (Gate::allows('isaScholarshipAccess')) {
+                $menu->add('ISAScholarship', ['route' => 'ISAScholarship']);
             }
         })->filter(function (Item $item) {
             if (empty($item->data('permission'))) {

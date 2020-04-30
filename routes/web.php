@@ -24,13 +24,17 @@ Route::get('/logout', 'Auth\LogOutController@logout');
 Route::get('/apperror', function () {
     return view('errors.500');
 });
+Route::get('/getStudents', 'ISAScholarshipDatatablesController@getStudents');
 
 Route::group(['prefix' => config('isaScholarship.route_path'), 'namespace' => 'ISAScholarship'], function () {
     //Student View
     Route::get('/', 'ISAScholarshipController@index');
-    Route::get('/confirm', 'ISAScholarshipController@confirm');
-    Route::get('/addStudent', 'ISAScholarshipController@addStudent');
+    Route::post('/confirm', 'ISAScholarshipController@confirm');
+    Route::post('/addStudent', 'ISAScholarshipController@addStudent');
     //Admin View
     Route::get('/facultyView', 'ISAScholarshipController@Facultyindex');
     //Route::get('/authorizedAdmin', 'ISAScholarshipController@review');
+    Route::get('/facultyView', 'ISAScholarshipController@facultyindex');
+    Route::get('/getStudentDetailed', 'ISAScholarshipController@getStudentDetailed');
+
 });

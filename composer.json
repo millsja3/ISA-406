@@ -13,6 +13,7 @@
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.0",
+        "lavary/laravel-menu": "^1.7",
         "miamioh/laravel-authman-integration": "^2.0",
         "miamioh/laravel-configmgr-integration": "^2.0",
         "miamioh/laravel-miami-theme": "^3.1",
