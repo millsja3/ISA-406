@@ -170,7 +170,9 @@ class ISAScholarshipController extends Controller
         $newWinner->scholarship_id = $student->scholarship_id;
         $newWinner->year_won = date("Y");
         $messages['Success'] = $uniqueid . " Has Been Awarded The Scholarship";
-        return view('facultyViews.index', compact('messages', 'appName', 'student'));
+        $students = new Student_Info();
+        $studentCollection = $students->get();
+        return view('facultyViews.index', compact('messages', 'appName', 'studentCollection' ));
     }
 
     public function denyStudentScholarship($uniqueid){
@@ -179,7 +181,9 @@ class ISAScholarshipController extends Controller
         $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
         $student->recieved_scholarship = "Denied";
         $messages['Success'] = $uniqueid . " Has Been Denied The Scholarship";
-        return view('facultyViews.index', compact('messages', 'appName', 'student'));
+        $students = new Student_Info();
+        $studentCollection = $students->get();
+        return view('facultyViews.index', compact('messages', 'appName', 'studentCollection'));
     }
 
     public function revertStudentScholarship($uniqueid){
@@ -188,7 +192,9 @@ class ISAScholarshipController extends Controller
         $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
         $student->recieved_scholarship = "Applied";
         $messages['Success'] = $uniqueid . " Has Been Reverted Back to Applied to The Scholarship";
-        return view('facultyViews.index', compact('messages', 'appName', 'student'));
+        $students = new Student_Info();
+        $studentCollection = $students->get();
+        return view('facultyViews.index', compact('messages', 'appName', 'studentCollection'));
     }
 
 }
