@@ -169,6 +169,7 @@ class ISAScholarshipController extends Controller
         $newWinner->uniqueid = $uniqueid;
         $newWinner->scholarship_id = $student->scholarship_id;
         $newWinner->year_won = date("Y");
+        $newWinner->save();
         $messages['Success'] = $uniqueid . " Has Been Awarded The Scholarship";
         $students = new Student_Info();
         $studentCollection = $students->get();
@@ -180,6 +181,7 @@ class ISAScholarshipController extends Controller
         $appName = 'global.appName';
         $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
         $student->recieved_scholarship = "Denied";
+        $student->save();
         $messages['Success'] = $uniqueid . " Has Been Denied The Scholarship";
         $students = new Student_Info();
         $studentCollection = $students->get();
@@ -191,6 +193,7 @@ class ISAScholarshipController extends Controller
         $appName = 'global.appName';
         $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
         $student->recieved_scholarship = "Applied";
+        $student->save();
         $messages['Success'] = $uniqueid . " Has Been Reverted Back to Applied to The Scholarship";
         $students = new Student_Info();
         $studentCollection = $students->get();

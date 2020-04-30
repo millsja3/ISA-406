@@ -53,8 +53,8 @@
             <p name ="statement" id ="statement">  <b> Personal Statement:  </b> {{{isset($student->statement) ? $student->statement: 'None'}}}</p>
             <input type="text" name="statement" id=statement"" value="{{{isset($student->statement) ? $student->statement: 'None'}}}" hidden>
 
-            <p name ="reciveScholarship" id ="reciveScholarship">  <b> Recieve Scholarship:  </b> {{{isset($student->statement) ? $student->statement: 'None'}}}</p>
-            <input type="text" name="reciveScholarship" id=reciveScholarship"" value="{{{isset($student->statement) ? $student->statement: 'None'}}}" hidden>
+            <p name ="reciveScholarship" id ="reciveScholarship">  <b> Recieve Scholarship:  </b> {{{isset($student->recieved_scholarship) ? $student->recieved_scholarship: 'None'}}}</p>
+            <input type="text" name="reciveScholarship" id=reciveScholarship"" value="{{{isset($student->recieved_scholarship) ? $student->recieved_scholarship: 'None'}}}" hidden>
             <label><b>Completed Courses:</b></label>
             <table cellspacing="0" class="table table-miami display compact" id="AliasTable" role="grid"
                    style="word-break: break-all" width="100%">
