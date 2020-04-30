@@ -4,9 +4,9 @@
 
 @endsection
 @section('javascript')
-    <link href="https://code.jquery.com/jquery-3.3.1.js">
-    <link href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
-    <link href="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#AliasTable').DataTable();
@@ -24,22 +24,20 @@
         <th>Academic Year</th>
         <th>GPA</th>
         <th>Career Type</th>
-        <th>Scholarship Name</th>
         <th>Received Scholarship</th>
     </tr>
     </thead>
     <tbody>
     @foreach ($studentCollection as $student)
         <tr>
-            <td><a href="{{ url('/getStudentDetailed') }}"> {{$student->fullname}} </a></td>
-            <td>{{$student->uniqueID}}</td>
+            <td><a href="{{ url('/getStudentDetailed') }}"> {{$student->full_name}} </a></td>
+            <td>{{$student->uniqueid}}</td>
             <td>{{$student->majors}}</td>
             <td>{{$student->minors}}</td>
             <td>{{$student->academicyear}}</td>
             <td>{{$student->gpa}}</td>
             <td>{{$student->career_type}}</td>
-            <td>{{$student->getscholarship()->name}}</td>
-            <td>{{$student->received_scholarship}}</td>
+            <td>{{$student->recieved_scholarship}}</td>
         </tr>
     @endforeach
     </tbody>
