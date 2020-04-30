@@ -75,10 +75,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <input type="submit" value="Accept" class="btn btn-success" style="margin-bottom:10px">
+                        <a class="btn btn-success" style="margin-bottom:10px" href="{{ url('/awardStudentScholarship/'. $student->uniqueid) }}"> Accept </a>
                     </div>
                     <div class="col">
-                        <input type="submit" value="Deny" class="btn btn-danger" style="margin-bottom:10px">
+                        <a class="btn btn-danger" style="margin-bottom:10px" href="{{ url('/denyStudentScholarship/'. $student->uniqueid) }}"> Deny </a>
                     </div>
                 </div>
             </div>
