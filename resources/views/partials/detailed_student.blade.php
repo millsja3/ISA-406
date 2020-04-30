@@ -1,8 +1,17 @@
-@extends('MiamiTheme::layouts.leftNavAndNoTopNav')
+@extends('MiamiTheme::layouts.noNav')
+@section('css')
+    <link rel="stylesheet" href="{{ url('/css/detailed.css') }}"/>
+@endsection
 @section('content')
-    <h2> {{$student->full_name}} Detailed View: </h2>
     <div class="panel panel-content">
         <form class="form" method="POST" action="{{url('')}}">
+        <div class="container">
+                <div class="row">
+                    <p class="pHeader"> {{$student->full_name}} Detailed View: </h2>
+                    <input type="submit" value="Accept" class="btn btn-success" id='formButton'>
+                    <input type="submit" value="Deny" class="btn btn-danger" id='formButton'>
+                </div>
+            </div>
             @csrf
             <p name ="scholarship" id ="scholarship"> <b> Scholarship Applied To: </b>  {{{isset($student->getscholarship()->get()->first()->name) ? $student->getscholarship()->get()->first()->name: 'None'}}}</p>
             <input type="text" name="scholarship" id=scholarship"" value="{{{isset($student->getscholarship()->get()->first()->name) ? $student->getscholarship()->get()->first()->name: 'None'}}}" hidden>
@@ -71,16 +80,6 @@
                 </tbody>
             </table>
             <br>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <input type="submit" value="Accept" class="btn btn-success" style="margin-bottom:10px">
-                    </div>
-                    <div class="col">
-                        <input type="submit" value="Deny" class="btn btn-danger" style="margin-bottom:10px">
-                    </div>
-                </div>
-            </div>
         </form>
     </div>
 @endsection
