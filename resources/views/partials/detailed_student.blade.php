@@ -7,9 +7,8 @@
             <p name ="scholarship" id ="scholarship"> <b> Scholarship Applied To: </b>  {{{isset($student->getscholarship()->get()->first()->name) ? $student->getscholarship()->get()->first()->name: 'None'}}}</p>
             <input type="text" name="scholarship" id=scholarship"" value="{{{isset($student->getscholarship()->get()->first()->name) ? $student->getscholarship()->get()->first()->name: 'None'}}}" hidden>
 
-            <p name ="Firstname" id ="name"> <b> Students Name:  </b> {{{isset($student->full_name) ? $student->full_name: 'None'}}}</p>
+            <p name ="name" id ="name"> <b> Students Name:  </b> {{{isset($student->full_name) ? $student->full_name: 'None'}}}</p>
             <input type="text" name="name" id=name"" value="{{{isset($student->full_name) ? $student->full_name: 'None'}}}" hidden>
-
 
             <p name ="uniqueID" id ="uniqueID"> <b> UniqueID:  </b> {{{isset($student->uniqueid) ? $student->uniqueid: 'None'}}}</p>
             <input type="text" name="uniqueID" id=uniqueID"" value="{{{isset($student->uniqueid) ? $student->uniqueid: 'None'}}}" hidden>
@@ -26,8 +25,8 @@
             <p name ="major" id ="major">  <b> Majors: </b>  {{{isset($student->majors) ? $student->majors: 'None'}}}</p>
             <input type="text" name="major" id=major"" value="{{{isset($student->majors) ? $student->majors: 'None'}}}" hidden>
 
-            <p name ="minors" id ="minors">  <b> Minors: </b>  {{{isset($student->$minors) ? $student->$minors: 'None'}}}</p>
-            <input type="text" name="minors" id=minors"" value="{{{isset($student->$minors) ? $student->$minors: 'None'}}}" hidden>
+            <p name ="minors" id ="minors">  <b> Minors: </b>  {{{isset($student->minors) ? $student->minors: 'None'}}}</p>
+            <input type="text" name="minors" id=minors"" value="{{{isset($student->minors) ? $student->minors: 'None'}}}" hidden>
 
             <p name ="careertype" id ="careertype">  <b> Career Type: </b>  {{{isset($student->career_type) ? $student->career_type: 'None'}}}</p>
             <input type="text" name="careertype" id=careertype"" value="{{{isset($student->career_type) ? $student->career_type: 'None'}}}" hidden>
@@ -56,17 +55,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                @if(isset($completedCourses))
+                @if(isset($completedcourses))
             @foreach($completedcourses as $course)
                 <tr>
                     <td>{{$course->course}}</td>
                     <td>{{$course->courseGrade}}</td>
                 </tr>
                 @endforeach
-                    @else
+                @else
                     <tr>
-                        <td>No Courses Reported</td>
-                        <td>No Grade Reported</td>
+                        <td>No courses taken</td>
+                        <td>No grade reported</td>
                     </tr>
                 @endif
                 </tbody>

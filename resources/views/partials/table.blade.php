@@ -34,6 +34,7 @@
             <input class="text" name="uniqueid" id="uniqueid" value="{{$student->uniqueid}}" hidden>
             <td><a href="{{ url('/getStudentDetailed/'. $student->uniqueid) }}"> {{$student->full_name}} </a></td>
             <td>{{$student->uniqueid}}</td>
+            <input class="text" name="uniqueid" value="{{$student->uniqueid}}" hidden>
             <td>{{$student->majors}}</td>
             <td>{{$student->minors}}</td>
             <td>{{$student->academicyear}}</td>
