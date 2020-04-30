@@ -8,6 +8,7 @@ use App\MiamiOH\Model\Scholarship;
 use App\MiamiOH\Model\Student_Info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use DataTables;
 
 class ISAScholarshipController extends Controller
 {
@@ -18,7 +19,7 @@ class ISAScholarshipController extends Controller
         return view('studentViews.index', compact('messages', 'appName'));
     }
 
-    public function facultyIndex()
+    public function facultyIndex(Request $request)
     {
         $messages = [];
         $appName = 'global.appName';
@@ -151,6 +152,8 @@ class ISAScholarshipController extends Controller
         $completedcourses = $student->completedCourses()->get();
         return view('partials.detailed_student', compact('messages', 'appName', 'student', 'completedcourses'));
     }
+
+
 
 }
 

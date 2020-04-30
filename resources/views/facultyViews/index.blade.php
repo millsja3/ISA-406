@@ -13,7 +13,7 @@
     <div>
         <h1>ISA Scholarship Application Reviews</h1>
         @include('partials.messages')
-        @include('partials.table')
+        @include('partials.table2')
         <p>Please select how you would like to view the submitted applications</p>
         <form method="POST">
             <select required name="viewType" id="viewType" onchange='viewChanged()'>
