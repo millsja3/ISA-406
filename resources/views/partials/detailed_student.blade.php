@@ -56,12 +56,19 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(isset($completedCourses))
             @foreach($completedcourses as $course)
                 <tr>
                     <td>{{$course->course}}</td>
                     <td>{{$course->courseGrade}}</td>
                 </tr>
                 @endforeach
+                    @else
+                    <tr>
+                        <td>No Courses Reported</td>
+                        <td>No Grade Reported</td>
+                    </tr>
+                @endif
                 </tbody>
             </table>
             <br>

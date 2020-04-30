@@ -33,6 +33,6 @@ Route::group(['prefix' => config('isaScholarship.route_path'), 'namespace' => 'I
     Route::post('/addStudent', 'ISAScholarshipController@addStudent');
     //Admin View
     Route::get('/facultyView', 'ISAScholarshipController@facultyIndex');
-    Route::get('/getStudentDetailed', 'ISAScholarshipController@getStudentDetailed');
+    Route::get('/getStudentDetailed/{uniqueid}', 'ISAScholarshipController@getStudentDetailed');
 
 });

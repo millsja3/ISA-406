@@ -145,11 +145,11 @@ class ISAScholarshipController extends Controller
         }
     }
 
-    public function getStudentDetailed(Request $request)
+    public function getStudentDetailed($uniqueid)
     {
-        $uniqueid = $request['uniqueid'];
-        $student =  Student_Info::where('uniqueid', $uniqueid);
-        $completedcourses = $student->completedCourses()->get();
+        $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
+        dd($uniqueid);
+        $completedcourses = CompletedCourses::where("uniqueID", $uniqueid)->get();
         return view('partials.detailed_student', compact('messages', 'appName', 'student', 'completedcourses'));
     }
 

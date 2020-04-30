@@ -24,19 +24,22 @@
         <th>Academic Year</th>
         <th>GPA</th>
         <th>Career Type</th>
+        <th>Scholarship</th>
         <th>Received Scholarship</th>
     </tr>
     </thead>
     <tbody>
     @foreach ($studentCollection as $student)
         <tr>
-            <td><a href="{{ url('/getStudentDetailed') }}"> {{$student->full_name}} </a></td>
+            <input class="text" name="uniqueid" id="uniqueid" value="{{$student->uniqueid}}" hidden>
+            <td><a href="{{ url('/getStudentDetailed/'. $student->uniqueid) }}"> {{$student->full_name}} </a></td>
             <td>{{$student->uniqueid}}</td>
             <td>{{$student->majors}}</td>
             <td>{{$student->minors}}</td>
             <td>{{$student->academicyear}}</td>
             <td>{{$student->gpa}}</td>
             <td>{{$student->career_type}}</td>
+            <td>{{$student->getscholarship()->get()->first()->name}}</td>
             <td>{{$student->recieved_scholarship}}</td>
         </tr>
     @endforeach
