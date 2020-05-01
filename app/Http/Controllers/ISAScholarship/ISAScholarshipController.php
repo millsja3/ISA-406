@@ -159,7 +159,7 @@ class ISAScholarshipController extends Controller
         $messages = [];
         $appName = 'global.appName';
         $student =  Student_Info::where('uniqueid', $uniqueid)->get()->first();
-        $completedcourses = CompletedCourses::where("uniqueID", $uniqueid)->get();
+        $completedcourses = CompletedCourses::where("uniqueID", $uniqueid)->orderBy('course')->get();
         return view('partials.detailed_student', compact('messages', 'appName', 'student', 'completedcourses'));
     }
 

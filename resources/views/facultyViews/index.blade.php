@@ -40,9 +40,9 @@
         @include('partials.messages')
         <div id='notApproved'>
             <p>Please log in to the admin account to view the scholarship applications.</p>
-            Username: <input type='text' id='username'>
-            Password: <input type='password' id='password'>
-            <button type='button' onclick="validateUser()">Login</button>
+                Username: <input type='text' id='username'>
+                Password: <input type='password' id='password'>
+                <button type='button' onclick="validateUser()">Login</button>
         </div>
         <div id='approved' hidden>
             <p>Search for a student by typing their name, the scholarship name, GPA, and application status. 

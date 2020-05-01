@@ -186,9 +186,14 @@
                             var gradeIndex = out[idx].lastIndexOf("grade");
                             var courseGrade = out[idx].substring(gradeIndex+7, gradeIndex+10);
                             var result = courseName + " " + courseGrade;
+                            console.log(result);
                             document.getElementById('CompletedCourse').value += result + ",";
                         }
                     }
+                    var completedParse = document.getElementById('CompletedCourse').value;
+                    completedParse = completedParse.substring(0, completedParse.length-1);
+                    console.log(completedParse);
+                    document.getElementById('CompletedCourse').value = completedParse;
 
                     // Verify the entered GPA
                     var gpaoutput = e.target.result;
